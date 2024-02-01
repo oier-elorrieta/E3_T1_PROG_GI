@@ -1,0 +1,12 @@
+package Modeloa;
+import java.time.LocalDateTime;
+
+import Aretoa;
+import Saioa;
+
+public class Sarrera {
+	private  int id;
+	private LocalDateTime data_ordua;
+	private Saioa saioa;
+	private Aretoa aretoa;
+}

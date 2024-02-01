@@ -1,0 +1,9 @@
+package Modeloa;
+
+public class Filma {
+	private String izena;
+	private int id;
+	private String generoa;
+	private int iraupena;
+	
+}

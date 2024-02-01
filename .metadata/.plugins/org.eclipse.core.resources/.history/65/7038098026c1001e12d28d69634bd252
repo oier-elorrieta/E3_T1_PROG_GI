@@ -1,0 +1,8 @@
+
+public class Bezeroa {
+	private String izena;
+	private String abizenak;
+	private String sexua;
+	private String pasahitza;
+	
+	

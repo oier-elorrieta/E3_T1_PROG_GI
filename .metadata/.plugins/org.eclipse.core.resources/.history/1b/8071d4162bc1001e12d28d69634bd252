@@ -1,0 +1,14 @@
+import java.util.Arrays;
+
+import Aretoa;
+
+public class Zinema {
+	
+	private int ordutegia;
+	private Aretoa[] aretoa;
+	private String izena; 
+	private int id;
+	private String kokapena;
+	
+}
+	

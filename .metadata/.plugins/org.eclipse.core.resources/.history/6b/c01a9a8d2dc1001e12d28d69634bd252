@@ -1,0 +1,19 @@
+package Modeloa;
+import java.time.LocalDate;
+
+public class Erabiltzaile {
+	private String izena;
+	private String pasahitza;
+	private String abizena;
+	private LocalDate jaiotzedata;
+	private String nan;
+	private String sexua;
+	private int id;
+	
+	
+	
+	
+	
+}
+	
+	

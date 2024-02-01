@@ -1,0 +1,9 @@
+import Modeloa.Sarrera;
+
+public class Erosketa {
+
+	private Sarrera sarrera;
+	private int prezioTotala;
+	private Erabiltzaile erabiltzailea;
+	
+}

@@ -1,0 +1,17 @@
+package Modeloa;
+
+public class Konex {
+
+
+	
+	try{
+		
+		
+		
+	}catch(Exception sql) {
+		
+		
+	}
+	
+	
+}

@@ -11,7 +11,7 @@ public class Filma {
 	
 	
 	public Filma(String izena, int id, String generoa, int iraupena) {
-		super();
+	
 		this.izena = izena;
 		this.id = id;
 		this.generoa = generoa;

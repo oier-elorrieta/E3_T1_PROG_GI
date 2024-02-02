@@ -10,23 +10,17 @@ public class Sarrera {
 	
 	
 	public Sarrera(int id, LocalDateTime data_ordua, Saioa saioa) {
-		super();
+		
 		this.id = id;
 		this.data_ordua = data_ordua;
 		this.saioa = saioa;
 		
 	}
 
-
-	
-
-
 	@Override
 	public String toString() {
 		return "Sarrera [id=" + id + ", data_ordua=" + data_ordua + ", saioa=" + saioa + "]";
 	}
-
-
 
 
 

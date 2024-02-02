@@ -6,109 +6,80 @@ import java.util.Objects;
 public class Saioa {
 
 	private int id;
-	private int aretoid;
-	private int zinemaid;
+	private Aretoa aretoa;
 	private LocalDate data;
 	private LocalTime h_ordua;
 	private double prezioa;
+	private Filma filma;
 	
-	
-	public Saioa(int id, LocalDate data, LocalTime h_ordua, double prezioa,int aretoid,int zinemaid) {
-		super();
+	public Saioa(int id, Aretoa aretoa, LocalDate data, LocalTime h_ordua, double prezioa, Filma filma) {
+		
 		this.id = id;
+		this.aretoa = aretoa;
 		this.data = data;
 		this.h_ordua = h_ordua;
 		this.prezioa = prezioa;
-		this.aretoid = aretoid;
-		this.zinemaid = zinemaid;
+		this.filma = filma;
 	}
-
-
-	
 
 	@Override
 	public String toString() {
-		return "Saioa [id=" + id + ", aretoid=" + aretoid + ", zinemaid=" + zinemaid + ", data=" + data + ", h_ordua="
-				+ h_ordua + ", prezioa=" + prezioa + "]";
+		return "Saioa [id=" + id + ", aretoa=" + aretoa + ", data=" + data + ", h_ordua=" + h_ordua + ", prezioa="
+				+ prezioa + ", filma=" + filma + "]";
 	}
-
-
-
 
 	public int getId() {
 		return id;
 	}
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	public Aretoa getAretoa() {
+		return aretoa;
+	}
+
+	public void setAretoa(Aretoa aretoa) {
+		this.aretoa = aretoa;
+	}
 
 	public LocalDate getData() {
 		return data;
 	}
 
-
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
-
 
 	public LocalTime getH_ordua() {
 		return h_ordua;
 	}
 
-
 	public void setH_ordua(LocalTime h_ordua) {
 		this.h_ordua = h_ordua;
 	}
-
 
 	public double getPrezioa() {
 		return prezioa;
 	}
 
-
 	public void setPrezioa(double prezioa) {
 		this.prezioa = prezioa;
 	}
-	
-	
-	
 
-
-	public int getAretoid() {
-		return aretoid;
+	public Filma getFilma() {
+		return filma;
 	}
 
-
-	public void setAretoid(int aretoid) {
-		this.aretoid = aretoid;
+	public void setFilma(Filma filma) {
+		this.filma = filma;
 	}
-	
-	
-
-
-	public int getZinemaid() {
-		return zinemaid;
-	}
-
-
-
-
-	public void setZinemaid(int zinemaid) {
-		this.zinemaid = zinemaid;
-	}
-
-
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(aretoid, data, h_ordua, id, prezioa, zinemaid);
+		return Objects.hash(aretoa, data, filma, h_ordua, id, prezioa);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -119,16 +90,10 @@ public class Saioa {
 		if (getClass() != obj.getClass())
 			return false;
 		Saioa other = (Saioa) obj;
-		return aretoid == other.aretoid && Objects.equals(data, other.data) && Objects.equals(h_ordua, other.h_ordua)
-				&& id == other.id && Double.doubleToLongBits(prezioa) == Double.doubleToLongBits(other.prezioa)
-				&& zinemaid == other.zinemaid;
+		return Objects.equals(aretoa, other.aretoa) && Objects.equals(data, other.data)
+				&& Objects.equals(filma, other.filma) && Objects.equals(h_ordua, other.h_ordua) && id == other.id
+				&& Double.doubleToLongBits(prezioa) == Double.doubleToLongBits(other.prezioa);
 	}
-
-
-	
-
-
-	
 	
 	
 	

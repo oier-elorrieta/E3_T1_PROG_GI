@@ -5,30 +5,27 @@ import java.util.Objects;
 public class Zinema {
 	
 	private int ordutegia;
-	private Aretoa[] aretoa;
+	private Saioa[] saioak;
 	private String izena; 
 	private int id;
 	private String kokapena;
 	
 	
-	
-	public Zinema(int ordutegia, Aretoa[] aretoa, String izena, int id, String kokapena) {
+	public Zinema(int ordutegia, Saioa[] saioak, String izena, int id, String kokapena) {
 		super();
 		this.ordutegia = ordutegia;
-		this.aretoa = aretoa;
+		this.saioak = saioak;
 		this.izena = izena;
 		this.id = id;
 		this.kokapena = kokapena;
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "Zinema [ordutegia=" + ordutegia + ", aretoa=" + Arrays.toString(aretoa) + ", izena=" + izena + ", id="
+		return "Zinema [ordutegia=" + ordutegia + ", saioak=" + Arrays.toString(saioak) + ", izena=" + izena + ", id="
 				+ id + ", kokapena=" + kokapena + "]";
 	}
-
 
 
 	public int getOrdutegia() {
@@ -36,23 +33,19 @@ public class Zinema {
 	}
 
 
-
 	public void setOrdutegia(int ordutegia) {
 		this.ordutegia = ordutegia;
 	}
 
 
-
-	public Aretoa[] getAretoa() {
-		return aretoa;
+	public Saioa[] getSaioak() {
+		return saioak;
 	}
 
 
-
-	public void setAretoa(Aretoa[] aretoa) {
-		this.aretoa = aretoa;
+	public void setSaioak(Saioa[] saioak) {
+		this.saioak = saioak;
 	}
-
 
 
 	public String getIzena() {
@@ -60,11 +53,9 @@ public class Zinema {
 	}
 
 
-
 	public void setIzena(String izena) {
 		this.izena = izena;
 	}
-
 
 
 	public int getId() {
@@ -72,11 +63,9 @@ public class Zinema {
 	}
 
 
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 
 	public String getKokapena() {
@@ -84,22 +73,19 @@ public class Zinema {
 	}
 
 
-
 	public void setKokapena(String kokapena) {
 		this.kokapena = kokapena;
 	}
-
 
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + Arrays.hashCode(aretoa);
+		result = prime * result + Arrays.hashCode(saioak);
 		result = prime * result + Objects.hash(id, izena, kokapena, ordutegia);
 		return result;
 	}
-
 
 
 	@Override
@@ -111,13 +97,17 @@ public class Zinema {
 		if (getClass() != obj.getClass())
 			return false;
 		Zinema other = (Zinema) obj;
-		return Arrays.equals(aretoa, other.aretoa) && id == other.id && Objects.equals(izena, other.izena)
-				&& Objects.equals(kokapena, other.kokapena) && ordutegia == other.ordutegia;
+		return id == other.id && Objects.equals(izena, other.izena) && Objects.equals(kokapena, other.kokapena)
+				&& ordutegia == other.ordutegia && Arrays.equals(saioak, other.saioak);
 	}
 	
 	
 	
 	
 	
+	
+	
+	
 }
+	
 	

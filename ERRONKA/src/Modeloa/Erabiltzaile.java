@@ -14,7 +14,7 @@ public class Erabiltzaile {
 	
 	public Erabiltzaile(String izena, String pasahitza, String abizena, LocalDate jaiotzedata, String nan, String sexua,
 			int id) {
-		super();
+	
 		this.izena = izena;
 		this.pasahitza = pasahitza;
 		this.abizena = abizena;

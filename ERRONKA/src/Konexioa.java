@@ -1,9 +1,0 @@
-
-public class Konexioa {
-
-	
-	
-	
-	
-	
-}

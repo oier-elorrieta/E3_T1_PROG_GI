@@ -1,0 +1,11 @@
+package Modeloa;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
+public class Saioa {
+
+	private int id;
+	private LocalDate data;
+	private LocalTime h_ordua;
+	private double prezioa;
+}

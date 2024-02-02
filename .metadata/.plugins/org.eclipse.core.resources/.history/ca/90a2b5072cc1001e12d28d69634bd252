@@ -1,0 +1,9 @@
+package Modeloa;
+
+public class Erosketa {
+
+	private Sarrera sarrera;
+	private int prezioTotala;
+	private Erabiltzaile erabiltzailea;
+	
+}

@@ -1,0 +1,11 @@
+
+public class Filma {
+	private String izena;
+	private int id;
+	private String generoa;
+	private double prezioa;
+	private int iraupena;
+	
+	
+	
+}

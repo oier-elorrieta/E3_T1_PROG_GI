@@ -1,0 +1,23 @@
+package Modeloa;
+
+import java.sql.*;
+
+public class Api {
+	
+	private String kontsulta;
+	
+	
+	try {
+	
+		Connection conn = DriverManager.getConnection("");
+		Statement sta = conn.createStatement();
+		ResultSet res = sta.executeQuery("");
+		
+	
+	}catch (Exception sql) {
+		
+		System.out.println("Error, ez da konektatu");
+	}
+	
+	
+}

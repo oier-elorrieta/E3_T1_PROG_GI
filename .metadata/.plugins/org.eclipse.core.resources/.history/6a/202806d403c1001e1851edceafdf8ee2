@@ -1,0 +1,8 @@
+
+public class Erosketa {
+private int id;
+private double prezioa;
+private String erabiltzaile_izena;
+private boolean online;
+private String idErabiltzaile;
+}

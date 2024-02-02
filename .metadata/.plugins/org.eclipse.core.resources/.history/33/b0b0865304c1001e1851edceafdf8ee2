@@ -1,0 +1,12 @@
+import java.util.Objects;
+
+public class Erabiltzaile{
+	private String id;
+	private String erabiltzailea;
+	private String abizenak;
+	private String pasahitza;
+	private String nan;
+	private String jaiotzedata;
+	private String sexua;
+	
+	}

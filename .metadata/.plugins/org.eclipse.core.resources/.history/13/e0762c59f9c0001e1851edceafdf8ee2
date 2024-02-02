@@ -1,0 +1,15 @@
+
+public class Saioa {
+
+	
+	private int id;
+	private String ordutegia;
+	private int hasieraordua;
+	private int amaieraordua;
+	private int data;
+	private Pelikula filma;
+	
+	
+	
+	
+}

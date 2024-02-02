@@ -1,0 +1,80 @@
+import java.util.Arrays;
+import java.util.Objects;
+
+public class Estadistikak {
+
+private int id;
+private int programan;
+private int online;
+private Zinema[] zinemak;
+
+private int irabaziak;
+@Override
+public String toString() {
+	return "Estadistikak [id=" + id + ", programan=" + programan + ", online=" + online + ", zinemak="
+			+ Arrays.toString(zinemak) + ", irabaziak=" + irabaziak + "]";
+}
+public Estadistikak(int id, int programan, int online, Zinema[] zinemak, int irabaziak) {
+	super();
+	this.id = id;
+	this.programan = programan;
+	this.online = online;
+	this.zinemak = zinemak;
+	this.irabaziak = irabaziak;
+}
+@Override
+public int hashCode() {
+	final int prime = 31;
+	int result = 1;
+	result = prime * result + Arrays.hashCode(zinemak);
+	result = prime * result + Objects.hash(id, irabaziak, online, programan);
+	return result;
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Estadistikak other = (Estadistikak) obj;
+	return id == other.id && irabaziak == other.irabaziak && online == other.online && programan == other.programan
+			&& Arrays.equals(zinemak, other.zinemak);
+}
+public int getId() {
+	return id;
+}
+public void setId(int id) {
+	this.id = id;
+}
+public int getPrograman() {
+	return programan;
+}
+public void setPrograman(int programan) {
+	this.programan = programan;
+}
+public int getOnline() {
+	return online;
+}
+public void setOnline(int online) {
+	this.online = online;
+}
+public Zinema[] getZinemak() {
+	return zinemak;
+}
+public void setZinemak(Zinema[] zinemak) {
+	this.zinemak = zinemak;
+}
+public int getIrabaziak() {
+	return irabaziak;
+}
+public void setIrabaziak(int irabaziak) {
+	this.irabaziak = irabaziak;
+}
+
+
+
+
+
+}

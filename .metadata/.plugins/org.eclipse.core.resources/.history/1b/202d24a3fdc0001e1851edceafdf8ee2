@@ -1,0 +1,109 @@
+import java.util.Objects;
+
+public class Erabiltzaile{
+	private String erabiltzaile;
+	private String abizenak;
+	private String sexua;
+	private String pasahitza;
+	private String id;
+	private String nan;
+	private String jaiotzedata;
+	
+	@Override
+	public String toString() {
+		return "Erabiltzaile [erabiltzaile=" + erabiltzaile + ", abizenak=" + abizenak + ", sexua=" + sexua
+				+ ", pasahitza=" + pasahitza + ", id=" + id + ", nan=" + nan + ", jaiotzedata=" + jaiotzedata + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(abizenak, erabiltzaile, id, jaiotzedata, nan, pasahitza, sexua);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Erabiltzaile other = (Erabiltzaile) obj;
+		return Objects.equals(abizenak, other.abizenak) && Objects.equals(erabiltzaile, other.erabiltzaile)
+				&& Objects.equals(id, other.id) && Objects.equals(jaiotzedata, other.jaiotzedata)
+				&& Objects.equals(nan, other.nan) && Objects.equals(pasahitza, other.pasahitza)
+				&& Objects.equals(sexua, other.sexua);
+	}
+
+	public Erabiltzaile(String erabiltzaile, String abizenak, String sexua, String pasahitza, String id, String nan,
+			String jaiotzedata) {
+		super();
+		this.erabiltzaile = erabiltzaile;
+		this.abizenak = abizenak;
+		this.sexua = sexua;
+		this.pasahitza = pasahitza;
+		this.id = id;
+		this.nan = nan;
+		this.jaiotzedata = jaiotzedata;
+	}
+
+	public String getErabiltzaile() {
+		return erabiltzaile;
+	}
+
+	public void setErabiltzaile(String erabiltzaile) {
+		this.erabiltzaile = erabiltzaile;
+	}
+
+	public String getAbizenak() {
+		return abizenak;
+	}
+
+	public void setAbizenak(String abizenak) {
+		this.abizenak = abizenak;
+	}
+
+	public String getSexua() {
+		return sexua;
+	}
+
+	public void setSexua(String sexua) {
+		this.sexua = sexua;
+	}
+
+	public String getPasahitza() {
+		return pasahitza;
+	}
+
+	public void setPasahitza(String pasahitza) {
+		this.pasahitza = pasahitza;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getNan() {
+		return nan;
+	}
+
+	public void setNan(String nan) {
+		this.nan = nan;
+	}
+
+	public String getJaiotzedata() {
+		return jaiotzedata;
+	}
+
+	public void setJaiotzedata(String jaiotzedata) {
+		this.jaiotzedata = jaiotzedata;
+	}
+	
+	
+	
+	
+}

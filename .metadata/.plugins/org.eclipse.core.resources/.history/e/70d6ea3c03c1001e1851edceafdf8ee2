@@ -1,0 +1,12 @@
+
+public class Pelikula {
+	private String izena;
+	private int id;
+	private String generoa;
+	private double prezioa;
+	private int iraupena;
+	private String sinopsia;
+	
+	
+	
+}

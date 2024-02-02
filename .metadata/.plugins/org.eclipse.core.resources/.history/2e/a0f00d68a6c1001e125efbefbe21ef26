@@ -1,6 +1,5 @@
 package Modeloa;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -9,26 +8,28 @@ public class Erosketa {
 	private Sarrera[] sarrera;
 	private int prezioTotala;
 	private Erabiltzaile erabiltzailea;
-	private LocalDateTime dataordua;
 	private double deskontua;
 	
 	
-	public Erosketa(Sarrera[] sarrera, int prezioTotala, Erabiltzaile erabiltzailea, LocalDateTime dataordua,
-			double deskontua) {
+	public Erosketa(Sarrera[] sarrera, int prezioTotala, Erabiltzaile erabiltzailea) {
 		super();
 		this.sarrera = sarrera;
 		this.prezioTotala = prezioTotala;
 		this.erabiltzailea = erabiltzailea;
-		this.dataordua = dataordua;
-		this.deskontua = deskontua;
 	}
+
+
+	
 
 
 	@Override
 	public String toString() {
 		return "Erosketa [sarrera=" + Arrays.toString(sarrera) + ", prezioTotala=" + prezioTotala + ", erabiltzailea="
-				+ erabiltzailea + ", dataordua=" + dataordua + ", deskontua=" + deskontua + "]";
+				+ erabiltzailea + ", deskontua=" + deskontua + "]";
 	}
+
+
+
 
 
 	public Sarrera[] getSarrera() {
@@ -59,16 +60,8 @@ public class Erosketa {
 	public void setErabiltzailea(Erabiltzaile erabiltzailea) {
 		this.erabiltzailea = erabiltzailea;
 	}
-
-
-	public LocalDateTime getDataordua() {
-		return dataordua;
-	}
-
-
-	public void setDataordua(LocalDateTime dataordua) {
-		this.dataordua = dataordua;
-	}
+	
+	
 
 
 	public double getDeskontua() {
@@ -86,7 +79,7 @@ public class Erosketa {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + Arrays.hashCode(sarrera);
-		result = prime * result + Objects.hash(dataordua, deskontua, erabiltzailea, prezioTotala);
+		result = prime * result + Objects.hash(deskontua, erabiltzailea, prezioTotala);
 		return result;
 	}
 
@@ -100,13 +93,11 @@ public class Erosketa {
 		if (getClass() != obj.getClass())
 			return false;
 		Erosketa other = (Erosketa) obj;
-		return Objects.equals(dataordua, other.dataordua)
-				&& Double.doubleToLongBits(deskontua) == Double.doubleToLongBits(other.deskontua)
+		return Double.doubleToLongBits(deskontua) == Double.doubleToLongBits(other.deskontua)
 				&& Objects.equals(erabiltzailea, other.erabiltzailea) && prezioTotala == other.prezioTotala
 				&& Arrays.equals(sarrera, other.sarrera);
 	}
-	
-	
+
 
 	
 	

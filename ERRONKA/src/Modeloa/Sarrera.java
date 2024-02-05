@@ -6,22 +6,22 @@ public class Sarrera {
 	private  int id;
 	private LocalDateTime data_ordua;
 	private Saioa saioa;
-
+	private String zinema;
 	
 	
-	public Sarrera(int id, LocalDateTime data_ordua, Saioa saioa) {
+	public Sarrera(int id, LocalDateTime data_ordua, Saioa saioa, String zinema) {
 		
 		this.id = id;
 		this.data_ordua = data_ordua;
 		this.saioa = saioa;
-		
+		this.zinema = zinema;
 	}
+
 
 	@Override
 	public String toString() {
-		return "Sarrera [id=" + id + ", data_ordua=" + data_ordua + ", saioa=" + saioa + "]";
+		return "Sarrera [id=" + id + ", data_ordua=" + data_ordua + ", saioa=" + saioa + ", zinema=" + zinema + "]";
 	}
-
 
 
 	public int getId() {
@@ -54,9 +54,19 @@ public class Sarrera {
 	}
 
 
+	public String getZinema() {
+		return zinema;
+	}
+
+
+	public void setZinema(String zinema) {
+		this.zinema = zinema;
+	}
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(data_ordua, id, saioa);
+		return Objects.hash(data_ordua, id, saioa, zinema);
 	}
 
 
@@ -69,19 +79,10 @@ public class Sarrera {
 		if (getClass() != obj.getClass())
 			return false;
 		Sarrera other = (Sarrera) obj;
-		return Objects.equals(data_ordua, other.data_ordua) && id == other.id && Objects.equals(saioa, other.saioa);
+		return Objects.equals(data_ordua, other.data_ordua) && id == other.id && Objects.equals(saioa, other.saioa)
+				&& Objects.equals(zinema, other.zinema);
 	}
 
-
-	
-
-
-
-
-	
-	
-	
-	
 	
 	
 }

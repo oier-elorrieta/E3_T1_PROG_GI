@@ -4,105 +4,12 @@ import java.util.Objects;
 
 public class Zinema {
 	
-	private int ordutegia;
+	private String ordutegia;
 	private Saioa[] saioak;
 	private String izena; 
 	private int id;
-	private String kokapena;
-	
-	
-	public Zinema(int ordutegia, Saioa[] saioak, String izena, int id, String kokapena) {
-		super();
-		this.ordutegia = ordutegia;
-		this.saioak = saioak;
-		this.izena = izena;
-		this.id = id;
-		this.kokapena = kokapena;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Zinema [ordutegia=" + ordutegia + ", saioak=" + Arrays.toString(saioak) + ", izena=" + izena + ", id="
-				+ id + ", kokapena=" + kokapena + "]";
-	}
-
-
-	public int getOrdutegia() {
-		return ordutegia;
-	}
-
-
-	public void setOrdutegia(int ordutegia) {
-		this.ordutegia = ordutegia;
-	}
-
-
-	public Saioa[] getSaioak() {
-		return saioak;
-	}
-
-
-	public void setSaioak(Saioa[] saioak) {
-		this.saioak = saioak;
-	}
-
-
-	public String getIzena() {
-		return izena;
-	}
-
-
-	public void setIzena(String izena) {
-		this.izena = izena;
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-
-	public String getKokapena() {
-		return kokapena;
-	}
-
-
-	public void setKokapena(String kokapena) {
-		this.kokapena = kokapena;
-	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.hashCode(saioak);
-		result = prime * result + Objects.hash(id, izena, kokapena, ordutegia);
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Zinema other = (Zinema) obj;
-		return id == other.id && Objects.equals(izena, other.izena) && Objects.equals(kokapena, other.kokapena)
-				&& ordutegia == other.ordutegia && Arrays.equals(saioak, other.saioak);
-	}
-	
-	
-	
+	private String kokapena; 
+	private Aretoa[] aretoak;
 	
 	
 	

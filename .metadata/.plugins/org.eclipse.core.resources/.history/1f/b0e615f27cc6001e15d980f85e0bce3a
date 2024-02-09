@@ -1,0 +1,48 @@
+package Testak;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Modeloa. *;
+import Modeloa.*;
+
+public class AretoaTest {
+ 
+	private Modeloa.Aretoa areto;
+	
+	@Before
+	public void setUp() {
+		areto = new Aretoa("AretoGorria",41); 
+	}
+	
+	@Test
+    public void testToString() {
+		
+		assertEquals(areto.toString(),"Aretoa [izena=" + "AretoGorria" + ", id=" + 41 + "]");
+		
+	}
+	
+    @Test
+    public void testGettersAndSetters() {
+    	areto.setIzena("AretoInfantil");
+    	assertEquals("AretoInfantil",areto.getIzena());
+    	areto.setId(33);
+    	assertEquals(33,areto.getId());
+    }
+    
+    @Test
+    public void testEquals() {
+    	Modeloa.Aretoa aretoBerdina = areto;
+    	Modeloa.Aretoa aretoDesberdina = new Aretoa("AretoFake",3);
+ 
+    	assertTrue(areto.equals(aretoBerdina));
+    	assertFalse(areto.equals(aretoDesberdina));
+    }
+    
+    
+    
+   
+}

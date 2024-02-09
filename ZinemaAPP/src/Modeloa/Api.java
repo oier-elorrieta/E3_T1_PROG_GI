@@ -5,7 +5,7 @@ import java.sql.*;
 public class Api {
 	
 	
-	/*Emen aurrerago kontsultak egiteko behar ditudan aldagaiak egongo dira,beherago f
+	/*Hemen aurrerago kontsultak egiteko behar ditudan aldagaiak egongo dira,beherago f
 	untzioak sortuko ditut kontsultak egiteko eta horrela datu basearekin erlazioa dau
 	katen kontsultak emen egongo dira edo hori uste dut */
 	

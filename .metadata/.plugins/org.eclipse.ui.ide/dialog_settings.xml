@@ -21,6 +21,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\in1dm3-d\Desktop\3.Erronka\Program\E3_T1_PROG_GI\ZinemaAPP"/>
 			<item value="C:\Users\in1dm3-d\Desktop\Zinema 2.0"/>
 			<item value="C:\Users\in1dm3-d\Documents\Zinema 2.0.zip"/>
 		</list>

@@ -1,6 +1,7 @@
 package Modeloa;
 
 import java.sql.*;
+import Bista.*;
 import java.util.ArrayList;
 
 public class Api {
@@ -12,15 +13,61 @@ public class Api {
     private String kontsulta;
     private Statement stm;
     private ResultSet rs;
-    
+    private String aukeratutakoZinema;
+    private ArrayList<Zinema> zinemaO = zinemaBete();
+   
+   
     
     // Eraikitzailea
     public Api() {
+    	
     }
     
     
     
-    public ResultSet getRs() {
+    
+    
+    
+
+
+
+
+
+	public ArrayList<Zinema> getZinemaO() {
+		return zinemaO;
+	}
+
+
+
+
+
+
+	public void setZinemaO(ArrayList<Zinema> zinemaO) {
+		this.zinemaO = zinemaO;
+	}
+
+
+
+
+
+
+	public String getAukeratutakoZinema() {
+		return aukeratutakoZinema;
+	}
+
+
+
+
+
+	public void setAukeratutakoZinema(String aukeratutakoZinema) {
+		this.aukeratutakoZinema = aukeratutakoZinema;
+	}
+
+
+
+
+
+	public ResultSet getRs() {
 		return rs;
 	}
 
@@ -29,9 +76,6 @@ public class Api {
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
-
-	
-
 
 	// Datu-basearekin konexioa egiteko metodoa
     public Connection konektatu() {
@@ -121,7 +165,7 @@ public class Api {
     	konektatu();
     	
     	try {
-    		this.kontsulta = "SELECT id_saioa, prezioa, id_areto,id_filma,saioa_data,hasiera_ordua FROM saioa where id_zinema";
+    		this.kontsulta = "SELECT id_saioa, prezioa, id_areto,id_filma,saioa_data,hasiera_ordua FROM saioa where id_zinema =" + id_zinema;
 			stm = this.konexioa.createStatement();
 			rs = stm.executeQuery(this.kontsulta);
 	   	 	
@@ -159,6 +203,83 @@ public class Api {
         
         return loginOk;
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public ArrayList<Zinema> zinemaBete() {
+    
+  
+	ArrayList<Zinema> zinemak = new ArrayList<>();
+	
+	Karteldegia karteldegia = new Karteldegia(filmak());
+	Zinemak();
+	
+	try {
+		while (getRs().next()) {
+			
+			ResultSet rs = getRs(); 
+			zinemak.add(new Zinema(rs.getString("Ordutegia"),rs.getString("izena"),rs.getInt("id_zinema"),rs.getString("Kokapena")));		
+			
+		}
+
+	} catch (SQLException e) {
+		System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
+	}	
+	
+	for(Zinema i: zinemak){
+		
+		i.setAretoak(aretoArray(i.getId()));
+		saioa(i.getId());
+		ArrayList<Saioa> saioak = new ArrayList<>();
+		try {
+						
+		while (getRs().next()) {
+				
+				ResultSet rs = getRs(); 
+				saioak.add(new Saioa(rs.getInt("id_saioa"),i.getAretoak().get(rs.getInt("id_areto")-1),rs.getDate("saioa_data").toLocalDate(),rs.getTime("hasiera_ordua").toLocalTime(),rs.getDouble("prezioa"),karteldegia.getFilmak().get(rs.getInt("id_filma")-1)));		
+				
+			} 
+
+		} catch (SQLException e) {
+			System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
+		}	
+		
+		i.setSaioak(saioak);
+		System.out.println(i);
+	}
+	
+	return zinemak;
+	 
+}   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

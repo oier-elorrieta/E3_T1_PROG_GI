@@ -2,6 +2,7 @@ package Bista;
 
 import java.awt.EventQueue;
 
+import Modeloa.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,32 +15,17 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
-public class OngiEtorri extends JFrame {
+;public class OngiEtorri extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OngiEtorri frame = new OngiEtorri();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
 	 */
-	public OngiEtorri() {
+	public OngiEtorri(Api api) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -56,11 +42,10 @@ public class OngiEtorri extends JFrame {
 		JButton OngiEtorriBtn = new JButton("Aurrera Egin");
 		OngiEtorriBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 Zinemak Zinemak = new Zinemak();
-	                
-	                //Zinemak jframe-era eramateko
-	                Zinemak.setVisible(true);
-	                
+				
+				Zinema_aukeraketa zinemaBista = new Zinema_aukeraketa(api);
+				zinemaBista.setVisible(true);
+				dispose();
 			}
 		});
 		OngiEtorriBtn.setBounds(143, 168, 132, 23);

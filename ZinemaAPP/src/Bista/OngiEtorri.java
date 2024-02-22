@@ -45,7 +45,8 @@ import java.awt.event.ActionEvent;
 				
 				Zinema_aukeraketa zinemaBista = new Zinema_aukeraketa(api);
 				zinemaBista.setVisible(true);
-				dispose();
+				dispose(); 
+				
 			}
 		});
 		OngiEtorriBtn.setBounds(143, 168, 132, 23);

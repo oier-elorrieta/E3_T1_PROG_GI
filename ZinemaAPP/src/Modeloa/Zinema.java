@@ -39,8 +39,7 @@ public class Zinema {
 
 	@Override
 	public String toString() {
-		return "Zinema [ordutegia=" + ordutegia + ", saioak=" + saioak + ", aretoak=" + aretoak + ", izena=" + izena
-				+ ", id=" + id + ", kokapena=" + kokapena + "]";
+		return izena;
 	}
 
 	public String getOrdutegia() {

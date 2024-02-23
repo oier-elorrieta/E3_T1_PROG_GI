@@ -44,6 +44,7 @@ import java.awt.event.ActionEvent;
 		OngiEtorriBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+<<<<<<< HEAD
 				dispose();
 				try {
 					Logeatu_Pantalla frame = new Logeatu_Pantalla(api);
@@ -51,6 +52,12 @@ import java.awt.event.ActionEvent;
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
+=======
+				Zinema_aukeraketa zinemaBista = new Zinema_aukeraketa(api);
+				zinemaBista.setVisible(true);
+				dispose(); 
+				
+>>>>>>> 4021640c4c8f71034bfb86c41b2edd2d86d63b0c
 			}
 		});
 		OngiEtorriBtn.setBounds(143, 168, 132, 23);

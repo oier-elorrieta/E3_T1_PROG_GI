@@ -6,7 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -32,18 +34,30 @@ import Kontroladorea.*;
         private JPanel zinemaAuPan;
         private JPanel filmaAuPan;
         private JPanel dataAuPan;
+        private JPanel saioaAuPan;
         private final JLabel lblZinemaAu = new JLabel("Aukeratu Zinema:");
         private final JComboBox<Zinema> cboZinemaAu = new JComboBox();
         private final JButton  btnFilmaData = new JButton("Atzera");
         private final JButton btnZineData = new JButton("Jarraitu");
-        private final JButton btnNext = new JButton("Hurrengoa");
+        private final JButton btnFilmaSaioa = new JButton("Hurrengoa");
         private final JButton  btnDataZine = new JButton("Atzera");
         private final JButton  btnDataFilma = new JButton("Jarraitu");
-        private JSplitPane splitPane = new JSplitPane();
+        private final JButton  btnSaioaErosketa = new JButton("Jarraitu");
+        private final JButton  btnSaioaFilma = new JButton("Atzera");
+        
+        
         Zinema aukeratutakoZinema = (Zinema)cboZinemaAu.getSelectedItem();
-        private final JComboBox cboFilmAu = new JComboBox();
-        private final JSplitPane splitPane_1 = new JSplitPane();
-      
+       
+        Date selectedDate;
+        Date currentDate =new Date();
+        LocalDate  currentLocalDate = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        UtilDateModel model;
+        private final JComboBox<String> cboFilmaAu = new JComboBox();
+        ArrayList<String> errepikatuGabekoPel;
+        private final JComboBox<Saioa> cboSaioaAu = new JComboBox();
+        String aukeratutakoPelia;
+        
+        
         
         /**
          * Create the frame.
@@ -59,9 +73,6 @@ import Kontroladorea.*;
         
         
         
-        
-        
-        
         public Zinema_aukeraketa(Api api) {
         	
         
@@ -72,17 +83,15 @@ import Kontroladorea.*;
            
             
             zinemaAuPan = hasieratuPanel1(api);
-            filmaAuPan = hasieratuPanel2();
             dataAuPan = hasieratuPanel3();
+            
 
           
             getContentPane().add(zinemaAuPan);
-            getContentPane().add(filmaAuPan);
             getContentPane().add(dataAuPan);
 
            
             zinemaAuPan.setVisible(true);
-            filmaAuPan.setVisible(false);
             dataAuPan.setVisible(false);
 
             // btn asfasdfasdfasdfdsfasasdfasdasafsasfasdfasdasfasdfasdfasdfasdfasdfasdfasdfasdfasdf
@@ -90,17 +99,25 @@ import Kontroladorea.*;
                 public void actionPerformed(ActionEvent e) {
                     zinemaAuPan.setVisible(false);
                     dataAuPan.setVisible(true);
-                    
-                    
+                    aukeratutakoZinema = (Zinema)cboZinemaAu.getSelectedItem();
                     
                 }
             });
 
-            btnNext.addActionListener(new ActionListener() {
+            
+            
+            btnDataFilma.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                    
-                    filmaAuPan.setVisible(false);
-                    
+                	dataAuPan.setVisible(false);
+                	selectedDate = model.getValue();
+                	
+                	filmaAuPan = hasieratuPanel2();
+                	getContentPane().add(filmaAuPan);
+                	
+                	filmaAuPan.setVisible(true);
+                	
+                	
                 }
             });
 
@@ -115,14 +132,40 @@ import Kontroladorea.*;
             
             btnFilmaData.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    dataAuPan.setVisible(true);
+                	cboFilmaAu.removeAllItems();
+                	dataAuPan.setVisible(true);
                     filmaAuPan.setVisible(false);
                     
                 }
             });
+            
+            btnFilmaSaioa.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                	aukeratutakoPelia = (String)cboFilmaAu.getSelectedItem();
+                	filmaAuPan.setVisible(false);
+                	saioaAuPan = hasieratuPanel4();
+                	getContentPane().add(saioaAuPan);
+                	saioaAuPan.setVisible(true);
+                	
+                    
+                }
+            });
+            
+            btnSaioaFilma.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                	cboSaioaAu.removeAllItems();
+                	saioaAuPan.setVisible(false);
+                	filmaAuPan.setVisible(true);
+                   
+                    
+                }
+            });
+            
 
         }
 
+        /////////////////////////////////////////////////////////////////////////////////////////////
+        
         public JPanel hasieratuPanel1(Api api) {
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
@@ -141,6 +184,8 @@ import Kontroladorea.*;
             return panel;
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+        
         public JPanel hasieratuPanel2() {
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
@@ -150,7 +195,9 @@ import Kontroladorea.*;
             lblFilmaAu.setHorizontalAlignment(SwingConstants.CENTER);
             lblFilmaAu.setFont(new Font("Tahoma", Font.PLAIN, 26));
             panel.add(lblFilmaAu, BorderLayout.NORTH);
-    		splitPane.setEnabled(false);
+    		
+            JSplitPane splitPane = new JSplitPane();
+            splitPane.setEnabled(false);
     		splitPane.setResizeWeight(0.5);
           
            
@@ -158,27 +205,45 @@ import Kontroladorea.*;
     		
     		
     		splitPane.setLeftComponent(btnFilmaData);
-    		splitPane.setRightComponent(btnNext);
+    		splitPane.setRightComponent(btnFilmaSaioa);
     		
-    		panel.add(cboFilmAu, BorderLayout.CENTER);
+    		errepikatuGabekoPel = new ArrayList<>();
+    		
+    		for(Saioa i:aukeratutakoZinema.getSaioak()) {
+    			
+    			if(!errepikatuGabekoPel.contains(i.getFilma().getIzena()) && i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
+    			
+    				cboFilmaAu.addItem(i.getFilma().getIzena());
+    				errepikatuGabekoPel.add(i.getFilma().getIzena());
+    			}
+    		}
+    		
+    		
+    		panel.add(cboFilmaAu, BorderLayout.CENTER);
             
+    		
             return panel;
         }
 
-        public JPanel hasieratuPanel3() {
+        
+        
+        
+        ////////////////////////////////////////////////////////////////////////////////////
+        
+        public JPanel hasieratuPanel3() {            
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
             panel.setLayout(new BorderLayout(0, 0));
+            JSplitPane splitPane = new JSplitPane();
+            splitPane.setEnabled(false);
+            splitPane.setResizeWeight(0.5);
+            panel.add(splitPane, BorderLayout.SOUTH);
             
-            splitPane_1.setEnabled(false);
-            splitPane_1.setResizeWeight(0.5);
-            panel.add(splitPane_1, BorderLayout.SOUTH);
-            
-            splitPane_1.setLeftComponent(btnDataZine);
-            splitPane_1.setRightComponent(btnDataFilma);
+            splitPane.setLeftComponent(btnDataZine);
+            splitPane.setRightComponent(btnDataFilma);
             // Crear el modelo de fecha
 
-            UtilDateModel model = new UtilDateModel();
+            model = new UtilDateModel();
 
             Properties properties = new Properties();
 
@@ -190,10 +255,15 @@ import Kontroladorea.*;
 
             // Configurar el modelo para no permitir fechas pasadas
 
-            model.setDate(2024, Calendar.FEBRUARY, 1); // Configuramos la fecha mínima (1 de febrero de 2024)
-
+            int year = currentLocalDate.getYear();
+            int month = currentLocalDate.getMonthValue();
+            int day = currentLocalDate.getDayOfMonth();
+            
+            model.setDate(year, month, day); 
             model.setSelected(true);
 
+           System.out.println(currentLocalDate);
+            
             // Crear el panel de fecha
 
             JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
@@ -213,30 +283,31 @@ import Kontroladorea.*;
                 @Override
 
                 public void propertyChange(PropertyChangeEvent evt) {
-
-                    Date selectedDate = model.getValue();
-                    
-       
-                    Date currentDate =new Date();
-                    
-                    Calendar fechaActual = Calendar.getInstance();
-                    fechaActual.setTime(currentDate);
-                    fechaActual.add(Calendar.DAY_OF_MONTH, -1);
-                    currentDate = fechaActual.getTime();
-                    
-                    LocalDate  currentLocalDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                    
+                	
+                	selectedDate = model.getValue();
+                	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+                	Date maximoa;
+					try {
+						maximoa = formato.parse("2024-03-11");
+					
+                	 
+						
                     int year = currentLocalDate.getYear();
                     int month = currentLocalDate.getMonthValue();
                     int day = currentLocalDate.getDayOfMonth();
 
-                    if (selectedDate != null && selectedDate.before(currentDate)) {
-
+                    if (selectedDate != null && selectedDate.before(currentDate) || selectedDate.after(maximoa)) {
+                    	
                         model.setDate(year,month,day);
                         model.setSelected(true);
+                        
+                        
 
                     }
-
+					} catch (ParseException e) {
+						
+						e.printStackTrace();
+					}
                 }
 
             });
@@ -247,6 +318,48 @@ import Kontroladorea.*;
             
             return panel;
         }
+        
+        
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        public JPanel hasieratuPanel4() {
+            
+        	JPanel panel = new JPanel();
+            panel.setBounds(0, 0, 434, 261);
+            panel.setLayout(new BorderLayout(0, 0));
+
+            JLabel lblSaioaAu = new JLabel("Aukeratu Saioa:");
+           
+            panel.add(lblSaioaAu, BorderLayout.NORTH);
+            lblSaioaAu.setHorizontalAlignment(SwingConstants.CENTER);
+            lblSaioaAu.setFont(new Font("Tahoma", Font.PLAIN, 26));
+            JSplitPane splitPane = new JSplitPane();
+            panel.add(cboSaioaAu, BorderLayout.CENTER);
+            
+            panel.add(splitPane, BorderLayout.SOUTH);
+            splitPane.setEnabled(false);
+    		splitPane.setResizeWeight(0.5);
+            
+  
+            
+    		splitPane.setLeftComponent(btnSaioaFilma);
+    		splitPane.setRightComponent(btnSaioaErosketa);
+            
+            for(Saioa i: aukeratutakoZinema.getSaioak()) {
+            	
+            	if(i.getFilma().getIzena().equals(aukeratutakoPelia) && i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate()))
+            	cboSaioaAu.addItem(i);
+            	
+            }
+           
+            
+            return panel;
+        }
+
+        
+        
+        
 	}
 	
 

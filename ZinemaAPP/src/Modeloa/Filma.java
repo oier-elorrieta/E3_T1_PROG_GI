@@ -22,7 +22,7 @@ public class Filma {
 
 	@Override
 	public String toString() {
-		return "Filma [izena=" + izena + ", id=" + id + ", generoa=" + generoa + ", iraupena=" + iraupena + "]";
+		return izena;
 	}
 
 

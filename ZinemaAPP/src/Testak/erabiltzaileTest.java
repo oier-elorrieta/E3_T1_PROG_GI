@@ -42,8 +42,8 @@ public class erabiltzaileTest {
         assertEquals(LocalDate.of(1998, 4, 25), erabiltzaile.getJaiotzedata());
         erabiltzaile.setNan("87654321B");
         assertEquals("87654321B", erabiltzaile.getNan());
-        erabiltzaile.setSexua("Female");
-        assertEquals("Female",erabiltzaile.getSexua());
+        erabiltzaile.setgeneroa("Female");
+        assertEquals("Female",erabiltzaile.getgeneroa());
         erabiltzaile.setId(2);
         assertEquals(2, erabiltzaile.getId());
     }

@@ -15,8 +15,10 @@ public  class Kontroladorea {
 	public static  void main(String[] args) {
 		
 		Api api = new Api();
+	
 		OngiEtorri ongiBista = new OngiEtorri(api);
 		ongiBista.setVisible(true);
+		
 		
 	}		
 }

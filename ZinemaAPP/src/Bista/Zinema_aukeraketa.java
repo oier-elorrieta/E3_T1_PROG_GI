@@ -29,6 +29,9 @@ import Kontroladorea.*;
 
 
 
+
+	
+
     public class Zinema_aukeraketa extends JFrame{
     	
         private JPanel zinemaAuPan;
@@ -109,15 +112,29 @@ import Kontroladorea.*;
             btnDataFilma.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                    
-                	dataAuPan.setVisible(false);
+                	
+                	
+                	
+                	//dataAuPan.setVisible(false);
+              
                 	selectedDate = model.getValue();
-                	
-                	filmaAuPan = hasieratuPanel2();
-                	getContentPane().add(filmaAuPan);
-                	
-                	filmaAuPan.setVisible(true);
-                	
-                	
+                	boolean aurrera = false;
+            		for(Saioa i:aukeratutakoZinema.getSaioak()) {
+            			
+            			if(i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
+            				
+            				dataAuPan.setVisible(false);
+                			filmaAuPan = hasieratuPanel2();
+                        	getContentPane().add(filmaAuPan);
+                        	filmaAuPan.setVisible(true);
+                        	aurrera = true;
+                        	break;
+            			}
+            			
+            		}
+            		if(!aurrera) {
+            			JOptionPane.showMessageDialog(Zinema_aukeraketa.this, "Data horretan zinema itxita dago", "Kontuz!", JOptionPane.WARNING_MESSAGE);
+            			}
                 }
             });
 
@@ -360,6 +377,7 @@ import Kontroladorea.*;
         
         
         
+
 	}
 	
 

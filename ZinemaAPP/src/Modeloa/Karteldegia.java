@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Karteldegia {
-	
+	 
 	private ArrayList<Filma> filmak= new ArrayList<>();
 
 	public Karteldegia(ArrayList<Filma> filmak) {
-		super();
+		
 		this.filmak = filmak;
 	}
 
@@ -27,11 +27,6 @@ public class Karteldegia {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(filmak);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -42,7 +37,8 @@ public class Karteldegia {
 		Karteldegia other = (Karteldegia) obj;
 		return Objects.equals(filmak, other.filmak);
 	}
+	 
 	
 	
-	
+	 
 }

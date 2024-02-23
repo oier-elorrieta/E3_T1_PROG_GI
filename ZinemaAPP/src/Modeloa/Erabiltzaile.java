@@ -9,11 +9,11 @@ public class Erabiltzaile {
 	private String pasahitza;
 	private LocalDate jaiotzedata;
 	private String nan;
-	private String sexua;
+	private String generoa;
 	private int id;
 	
 	
-	public Erabiltzaile(String erabiltzaile, String izena, String pasahitza, String abizena, LocalDate jaiotzedata, String nan, String sexua,
+	public Erabiltzaile(String erabiltzaile, String izena, String pasahitza, String abizena, LocalDate jaiotzedata, String nan, String generoa,
 			int id) {
 		this.erabiltzaile = erabiltzaile;
 		this.izena = izena;
@@ -21,14 +21,14 @@ public class Erabiltzaile {
 		this.abizena = abizena;
 		this.jaiotzedata = jaiotzedata;
 		this.nan = nan;
-		this.sexua = sexua;
+		this.generoa = generoa;
 		this.id = id;
 	}
 
 	@Override
 	public String toString() {
 		return "Erabiltzaile [erabiltzaile=" + erabiltzaile + ", izena=" + izena + ", abizena=" + abizena
-				+ ", pasahitza=" + pasahitza + ", jaiotzedata=" + jaiotzedata + ", nan=" + nan + ", sexua=" + sexua
+				+ ", pasahitza=" + pasahitza + ", jaiotzedata=" + jaiotzedata + ", nan=" + nan + ", generoa=" + generoa
 				+ ", id=" + id + "]";
 	}
 
@@ -80,12 +80,12 @@ public class Erabiltzaile {
 		this.nan = nan;
 	}
 
-	public String getSexua() {
-		return sexua;
+	public String getgeneroa() {
+		return generoa;
 	}
 
-	public void setSexua(String sexua) {
-		this.sexua = sexua;
+	public void setgeneroa(String generoa) {
+		this.generoa = generoa;
 	}
 
 	public int getId() {
@@ -98,7 +98,7 @@ public class Erabiltzaile {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(abizena, erabiltzaile, id, izena, jaiotzedata, nan, pasahitza, sexua);
+		return Objects.hash(abizena, erabiltzaile, id, izena, jaiotzedata, nan, pasahitza, generoa);
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class Erabiltzaile {
 		return Objects.equals(abizena, other.abizena) && Objects.equals(erabiltzaile, other.erabiltzaile)
 				&& id == other.id && Objects.equals(izena, other.izena)
 				&& Objects.equals(jaiotzedata, other.jaiotzedata) && Objects.equals(nan, other.nan)
-				&& Objects.equals(pasahitza, other.pasahitza) && Objects.equals(sexua, other.sexua);
+				&& Objects.equals(pasahitza, other.pasahitza) && Objects.equals(generoa, other.generoa);
 	}
 
 	

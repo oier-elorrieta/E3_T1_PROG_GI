@@ -14,6 +14,7 @@ import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 ;public class OngiEtorri extends JFrame {
 
@@ -47,6 +48,7 @@ import java.awt.event.ActionEvent;
 				zinemaBista.setVisible(true);
 				dispose(); 
 				
+
 			}
 		});
 		OngiEtorriBtn.setBounds(143, 168, 132, 23);

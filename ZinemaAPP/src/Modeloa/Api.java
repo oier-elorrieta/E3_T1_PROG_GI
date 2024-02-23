@@ -15,7 +15,7 @@ public class Api {
     private ResultSet rs;
     private String aukeratutakoZinema;
     private ArrayList<Zinema> zinemaO = zinemaBete();
-   
+    private ArrayList<Erabiltzaile> erabiltzaileAr = getErabiltzaileakBete();
    
     
     // Eraikitzailea
@@ -25,21 +25,9 @@ public class Api {
     
     
     
-    
-    
-    
-
-
-
-
-
 	public ArrayList<Zinema> getZinemaO() {
 		return zinemaO;
 	}
-
-
-
-
 
 
 	public void setZinemaO(ArrayList<Zinema> zinemaO) {
@@ -47,41 +35,28 @@ public class Api {
 	}
 
 
-
-
-
-
 	public String getAukeratutakoZinema() {
 		return aukeratutakoZinema;
 	}
-
-
-
-
 
 	public void setAukeratutakoZinema(String aukeratutakoZinema) {
 		this.aukeratutakoZinema = aukeratutakoZinema;
 	}
 
-
-
-
-
 	public ResultSet getRs() {
 		return rs;
 	}
 
-
-
 	public void setRs(ResultSet rs) {
 		this.rs = rs;
 	}
-
+	
+	
 	// Datu-basearekin konexioa egiteko metodoa
     public Connection konektatu() {
         
     	try {
-    		
+    		 
             // Konexioa sortu, oraindik ez badago
             if (konexioa == null || konexioa.isClosed()) {
                 
@@ -94,7 +69,31 @@ public class Api {
     	return konexioa;
     }
     
-    public void  Zinemak(){
+    public ArrayList<Erabiltzaile> getErabiltzaileakBete(){
+    	
+    	konektatu();
+    	ArrayList<Erabiltzaile> erabiltzaileAr = new ArrayList();
+    	
+    	 /*KONTSULTA HONEKIN ERABILTZAILE OBJEKTUEI BALIOA EMANGO DIEGU*/
+        try {
+            this.kontsulta = "SELECT e_izena,izena, abizena,pasahitza,nan, jaiotze_data, generoa, id_erabiltzaile, generoa  FROM ERABILTZAILE";
+            stm = this.konexioa.createStatement();
+            rs = stm.executeQuery(this.kontsulta);
+            
+        	  
+            while (rs.next()) {
+                
+                erabiltzaileAr.add(new Erabiltzaile(rs.getString("e_izena"),rs.getString("izena"),rs.getString("pasahitza"),rs.getString("abizena"),rs.getDate("jaiotze_data").toLocalDate(),rs.getString("nan"),rs.getString("generoa"),rs.getInt("id_erabiltzaile")  ));  
+               
+          }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+    	return erabiltzaileAr;
+    }
+    
+    public void Zinemak(){
     	
     	konektatu();
     	
@@ -178,42 +177,6 @@ public class Api {
     	
     }
    
-    
-    // Saio-hasiera egiaztatzeko metodoa
-    public boolean isLoginOk() {
-    	
-        boolean loginOk = false;
-        konektatu(); // Konexioa egiaztatzeko
-        
-        try {
-            // Erabiltzailea eta pasahitza datu-basean dauden egiaztatu
-        	
-        	 this.kontsulta = "SELECT * FROM erabiltzaile WHERE izena= 'Andoni' AND pasahitza = 'p123'";
-        	 stm = this.konexioa.createStatement();
-        	 rs = stm.executeQuery(this.kontsulta);
-        	 
-            // Emaitza bat aurkitzen bada, saioa hasita da
-            if (rs.next()) {
-                loginOk = true;
-            }
-            
-        } catch (SQLException e) {
-            System.out.println("Errorea saio-hasierako egiaztapena egiten: " + e.getMessage());
-        }
-        
-        return loginOk;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

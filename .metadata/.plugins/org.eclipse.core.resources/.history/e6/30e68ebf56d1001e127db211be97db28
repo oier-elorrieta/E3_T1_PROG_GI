@@ -1,0 +1,73 @@
+package Bista;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import Modeloa.*;
+import Kontroladorea.*;
+
+
+
+public class Zinema_aukeraketa extends JFrame{
+	
+	private JPanel contentPane;
+	private JPanel zinemaAuP = new JPanel();
+	private JPanel FilmaAuP = new JPanel();
+	private JPanel dataAuPan = new JPanel();
+	private final JLabel lblZinemaAu = new JLabel("Aukeratu Zinema:");
+	private final JComboBox cboZinemaAu = new JComboBox();
+	private final JButton btnJarraitu = new JButton("Jarraitu");
+	
+	
+	
+	
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public Zinema_aukeraketa(Api api) {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		
+
+		contentPane.add(zinemaAuP, BorderLayout.CENTER);
+		
+		zinemaAuP.add(lblZinemaAu, BorderLayout.NORTH);
+		lblZinemaAu.setHorizontalAlignment(SwingConstants.CENTER);
+		lblZinemaAu.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		
+		zinemaAuP.add(cboZinemaAu, BorderLayout.CENTER);
+	
+		zinemaAuP.add(btnJarraitu, BorderLayout.SOUTH);
+		
+		
+		
+		contentPane.add(FilmaAuP, BorderLayout.CENTER);
+		FilmaAuP.setLayout(new BorderLayout(0, 0));
+		
+		
+		contentPane.add(dataAuPan, BorderLayout.CENTER);
+		zinemaAuP.setLayout(new BorderLayout(0, 0));
+		
+		
+		
+		
+		
+		
+		}
+	
+	
+	}
+	
+

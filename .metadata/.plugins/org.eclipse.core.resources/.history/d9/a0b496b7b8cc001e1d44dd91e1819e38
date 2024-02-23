@@ -1,0 +1,42 @@
+package Kontroladorea;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import Modeloa.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		ArrayList<Zinema> zinemak = new ArrayList<>();
+	
+		
+		//zinemak(i).setAretoa = api.aretoa(i)
+		
+		Api api = new Api();
+		api.Zinemak();
+		try {
+			while (api.getRs().next()) {
+				
+				ResultSet rs = api.getRs(); 
+				zinemak.add(new Zinema(rs.getString("ordutegia"),rs.getString("izena"),rs.getInt("id_zinema"),rs.getString("kokapena")));		
+				
+			}
+
+		} catch (SQLException e) {
+			System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
+		}
+		
+		for(Zinema i: zinemak){
+		
+			System.out.println(i);
+		}
+		
+		
+		System.out.println(api.aretoArray(1).get(19));
+		
+	}
+
+}

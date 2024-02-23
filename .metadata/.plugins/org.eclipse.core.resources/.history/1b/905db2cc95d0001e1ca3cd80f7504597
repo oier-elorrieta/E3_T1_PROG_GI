@@ -1,0 +1,101 @@
+package Bista;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import Modeloa.*;
+import Kontroladorea.*;
+
+
+
+public class Zinema_aukeraketa extends JFrame implements ActionListener {
+	
+	private JPanel Panel1;
+	private JPanel Panel2;
+	private JPanel Panel3;
+	private JButton btnPa;
+	private JButton btnPanela;
+	private JButton btnPanela_1;
+	private JTextField textIzena;
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public void Zinema_aukeraketa(Api api) {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(null);
+		hasieratuFrame();
+		
+	}
+	
+	public void hasieratuFrame() {
+		btnPa = new JButton("1 Panela");
+		
+		btnPa.setBounds(42, 213, 89, 23);
+		getContentPane().add(btnPa);
+		btnPa.addActionListener(this);
+		
+		btnPanela = new JButton("2 panela");
+				btnPanela.setBounds(162, 213, 89, 23);
+		getContentPane().add(btnPanela);
+		btnPanela.addActionListener(this);
+		btnPanela_1 = new JButton("3 panela");
+		
+			
+		btnPanela_1.setBounds(293, 213, 89, 23);
+		getContentPane().add(btnPanela_1);
+		hasieratuPanel1();
+		getContentPane().add(Panel1);
+		hasieratuPanel2();
+		getContentPane().add(Panel2);
+		Panel2.setLayout(null);
+		Panel1.setLayout(null);
+			
+		//hasieratuPanel3();
+	
+	}
+	
+	public void hasieratuPanel1() {
+		Panel1 = new JPanel();
+		Panel1.setBounds(26, 21, 356, 156);
+		Panel1.setBackground(Color.LIGHT_GRAY);
+		textIzena = new JTextField();
+		textIzena.setBounds(133, 6, 86, 20);
+		Panel1.add(textIzena);
+		textIzena.setColumns(10);
+		JLabel lblIzena = new JLabel("Izena");
+		lblIzena.setBounds(42, 9, 27, 14);
+		Panel1.add(lblIzena);
+		
+		JButton btnDatuakOnartu = new JButton("Onartu");
+		btnDatuakOnartu.setBounds(115, 105, 67, 23);
+		Panel1.add(btnDatuakOnartu);
+		
+	}
+	
+	public void hasieratuPanel2() {
+		Panel2 = new JPanel();
+		Panel2.setBounds(26, 21, 356, 156);
+		Panel2.setBackground(Color.red);
+	}
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPa) {
+			System.out.println("Boton1");
+			Panel1.setVisible(true);
+			Panel2.setVisible(false);
+		}
+		if (e.getSource() == btnPanela) {
+			System.out.println("Boton2");
+			Panel2.setVisible(true);
+			Panel1.setVisible(false);
+		}
+		
+	}
+	
+}

@@ -1,0 +1,149 @@
+package Modeloa;
+
+import java.sql.*;
+
+public class Api {
+    
+	private String url = "jdbc:mysql://localhost:3307/db_zinema";
+	private String erabiltzailea = "root";
+    private String pasahitza = "";
+    
+    private Connection konexioa = null;
+    
+    private String kontsulta;
+    private Statement stm;
+    private ResultSet rs;
+    
+    // Eraikitzailea
+    public Api() {
+    }
+    
+    // Datu-basearekin konexioa egiteko metodoa
+    public Connection konektatu() {
+        
+    	try {
+    		
+            // Konexioa sortu, oraindik ez badago
+            if (konexioa == null || konexioa.isClosed()) {
+                
+                this.konexioa = DriverManager.getConnection(this.url, this.erabiltzailea, this.pasahitza);
+                System.out.println("Konektatuta!!!");
+            }
+        } catch (SQLException e) {
+            System.out.println("Errorea datu-basearekin konexioa egiten: " + e.getMessage());
+        }
+    	return konexioa;
+    }
+    
+    public Zinema[] Zinemak(){
+    	
+    	konektatu();
+    	Zinema[] zinemaArray = null;
+    	
+    	try {
+    		this.kontsulta = "SELECT count(*) FROM ZINEMA";
+			stm = this.konexioa.createStatement();
+			rs = stm.executeQuery(this.kontsulta);
+	   	 	
+			
+			if(rs.next()) {
+	            int rowCount = rs.getInt(1); 
+	            zinemaArray = new Zinema[rowCount]; 
+	            System.out.println(rowCount);
+			}
+			/*ZINEMA OBJETUAK SORTUKO DIRA HONEKIN*/
+			for(int i = 0; i < zinemaArray.length; i++) {
+				aretoArray(i);
+								
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return zinemaArray;
+    }
+    
+    public Aretoa[] aretoArray(int id) {
+        konektatu();
+        Aretoa[] aretoArray = null;
+        
+        try {
+            this.kontsulta = "SELECT count(*) FROM areto WHERE id_zinema =" + id;
+            stm = this.konexioa.createStatement();
+            rs = stm.executeQuery(this.kontsulta);
+
+            if (rs.next()) {
+                int rowCount = rs.getInt(1);
+                aretoArray = new Aretoa[rowCount];
+                System.out.println(rowCount);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        /*KONTSULTA HONEKIN OBJEKTUEI BALIOA EMANGO DIEGU*/
+        try {
+            this.kontsulta = "SELECT izena FROM areto WHERE id_zinema = " + id;
+            stm = this.konexioa.createStatement();
+            rs = stm.executeQuery(this.kontsulta);
+            
+            int index = 0;
+            while (rs.next()) {
+                
+                String izena = rs.getString("izena");
+                System.out.println(izena);
+                
+                index++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return aretoArray;
+    }
+    
+    // Saio-hasiera egiaztatzeko metodoa
+    public boolean isLoginOk() {
+    	
+        boolean loginOk = false;
+        konektatu(); // Konexioa egiaztatzeko
+        
+        try {
+            // Erabiltzailea eta pasahitza datu-basean dauden egiaztatu
+        	
+        	 this.kontsulta = "SELECT * FROM erabiltzaile WHERE izena= 'Andoni' AND pasahitza = 'p123'";
+        	 stm = this.konexioa.createStatement();
+        	 rs = stm.executeQuery(this.kontsulta);
+        	 
+            // Emaitza bat aurkitzen bada, saioa hasita da
+            if (rs.next()) {
+                loginOk = true;
+            }
+            
+        } catch (SQLException e) {
+            System.out.println("Errorea saio-hasierako egiaztapena egiten: " + e.getMessage());
+        }
+        
+        return loginOk;
+    }
+    
+    
+    
+    // Beste metodoak...
+    
+    // Getter & Setter
+    public String getErabiltzailea() {
+        return erabiltzailea;
+    }
+    public void setErabiltzailea(String erabiltzailea) {
+        this.erabiltzailea = erabiltzailea;
+    }
+    
+    public String getPasahitza() {
+        return pasahitza;
+    }
+    public void setPasahitza(String pasahitza) {
+        this.pasahitza = pasahitza;
+    }
+}

@@ -1,0 +1,74 @@
+package Bista;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import Modeloa.*;
+import Kontroladorea.*;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JComboBox;
+
+public class Zinemak extends JFrame {
+	private Main kk = new Main();
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	
+	
+	public Zinemak(Api api) {
+		
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		
+		JPanel panel = new JPanel();
+		contentPane.add(panel);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		JComboBox comboBox = new JComboBox();
+		panel.add(comboBox, BorderLayout.CENTER);
+		
+		JLabel lblZinemaAukeratu = new JLabel("Aukeratu Zinema:");
+		lblZinemaAukeratu.setFont(new Font("Tahoma", Font.PLAIN, 33));
+		panel.add(lblZinemaAukeratu, BorderLayout.NORTH);
+		
+		for(int i = 0;i<api.zinemaBete().size();i++) {
+			comboBox.addItem(api.zinemaBete().get(i).getIzena());
+		}
+		
+		
+		 
+	}
+}

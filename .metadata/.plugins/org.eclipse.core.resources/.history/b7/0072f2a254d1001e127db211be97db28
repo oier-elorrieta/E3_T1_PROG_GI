@@ -1,0 +1,61 @@
+package Bista;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+
+import Modeloa.*;
+import Kontroladorea.*;
+
+
+
+public class Zinema_aukeraketa extends JFrame{
+	
+	private JPanel contentPane;
+	
+
+	/**
+	 * Create the frame.
+	 */
+	public Zinema_aukeraketa(Api api) {
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+	
+		
+	}
+	
+
+	
+	public void hasieratuZinemaPnl() {
+
+		JPanel zinemaAuP = new JPanel();
+		zinemaAuP.setBounds(0, 0, 434, 261);
+		contentPane.add(zinemaAuP);
+		
+	}
+	
+	public void hasieratuFilmaPnl() {
+		
+		JPanel FilmaAuP = new JPanel();
+		FilmaAuP.setBounds(0, 0, 10, 10);
+		contentPane.add(FilmaAuP);
+	
+		
+	}
+	
+	public void hasieratuDataPnl() {
+
+		JPanel dataAuPan = new JPanel();
+		dataAuPan.setBounds(0, 0, 434, 261);
+		contentPane.add(dataAuPan);
+	}
+	}
+	
+

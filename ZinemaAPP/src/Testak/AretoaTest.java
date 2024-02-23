@@ -9,10 +9,7 @@ import Modeloa. *;
 
 public class AretoaTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+
 private Modeloa.Aretoa areto;
 	
 	@Before

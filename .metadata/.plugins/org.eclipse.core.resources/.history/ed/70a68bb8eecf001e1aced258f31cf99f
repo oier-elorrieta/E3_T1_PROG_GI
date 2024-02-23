@@ -1,0 +1,40 @@
+package Kontroladorea;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import Modeloa.*;
+import  Bista.*;
+
+public  class Kontroladorea {
+
+	public Zinema_aukeraketa zinemaAu;
+	
+	
+	
+	public Kontroladorea(Zinema_aukeraketa zinemaAu) {
+		
+		this.zinemaAu = zinemaAu;
+	}
+
+
+	public void hasi() {
+		 
+		zinemaAu.setVisible(true); 
+	 }
+	 
+	
+	public static  void main(String[] args) {
+		
+		Api api = new Api();
+		Zinema_aukeraketa zinemaAu = new Zinema_aukeraketa(api);
+		Kontroladorea kk = new Kontroladorea(zinemaAu);	
+		kk.hasi();
+		 
+		 
+		
+		
+	}
+	
+}

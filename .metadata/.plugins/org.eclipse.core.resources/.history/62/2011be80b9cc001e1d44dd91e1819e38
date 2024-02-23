@@ -1,0 +1,17 @@
+package Modeloa;
+import java.util.Arrays;
+import java.util.Objects;
+
+public class Zinema {
+	
+	private	String ordutegia;
+	private ArrayList<Saioa> saioak;
+	private ArrayList<Aretoa> aretoak;
+	private String izena; 
+	private int id;
+	private String kokapena;
+	
+	
+}
+	
+	

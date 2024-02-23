@@ -1,0 +1,30 @@
+package Kontroladorea;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import Modeloa.*;
+import  Bista.*;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		Api api = new Api();
+		
+		try {
+			Zinemak zinemabista = new Zinemak(api);
+			zinemabista.setVisible(true);
+		}catch(Exception e){
+			System.out.println("oo");
+		}
+		
+		
+	}
+	
+	
+		
+		
+	
+}

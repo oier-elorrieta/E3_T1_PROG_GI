@@ -45,9 +45,6 @@ public class Zinema_aukeraketa extends JFrame{
 		
 		
 		
-		
-		
-	
 	}
 	
 	public void hasieratuZinemaPnl() {

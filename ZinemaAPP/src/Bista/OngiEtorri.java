@@ -14,6 +14,7 @@ import javax.swing.BoxLayout;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 ;public class OngiEtorri extends JFrame {
 
@@ -43,9 +44,13 @@ import java.awt.event.ActionEvent;
 		OngiEtorriBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Zinema_aukeraketa zinemaBista = new Zinema_aukeraketa(api);
-				zinemaBista.setVisible(true);
 				dispose();
+				try {
+					Logeatu_Pantalla frame = new Logeatu_Pantalla(api);
+					frame.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		OngiEtorriBtn.setBounds(143, 168, 132, 23);

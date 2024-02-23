@@ -1,0 +1,27 @@
+package Kontroladorea;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import Modeloa.*;
+import  Bista.*;
+
+public class Kontroladorea {
+
+	 public static Api api = new Api();
+	 private static Zinema_aukeraketa zinemaAu = new Zinema_aukeraketa(api);
+	 private static OngiEtorri ongiB = new OngiEtorri();
+	 private static Filma_aukeraketa filmaAu = new Filma_aukeraketa(api);
+	 
+	 
+	
+	
+	public static  void main(String[] args) {
+		
+		ongiB.setVisible(true);
+		
+		
+	}
+	
+}

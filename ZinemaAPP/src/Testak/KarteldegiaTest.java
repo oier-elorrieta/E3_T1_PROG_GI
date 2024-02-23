@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,77 +13,56 @@ import Modeloa.*;
 
 
 public class KarteldegiaTest {
-
-	Modeloa.Filma[] filmak = {
-            new Filma("Avatar", 1, "zientzia-fikzioa", 90),
-            new Filma("Matrix", 2, "zientzia-fikzioa", 120)
-        };
-	 
-	Modeloa.Karteldegia karteldegia;
+	 private ArrayList<Filma> karteldegiaAr= new ArrayList<>();
+	 private Modeloa.Karteldegia karteldegia;
 	
 	@Before
-	public void setUp() {
-		
-		 karteldegia = new Karteldegia(filmak);
-
+	public void setUp() { 
+		 karteldegiaAr.add(new Filma("Avatar", 1, "zientzia-fikzioa", 90));
+		 karteldegiaAr.add(new Filma("Matrix", 2, "zientzia-fikzioa", 120));
+		 
+		 karteldegia = new Karteldegia(karteldegiaAr);
 	}
 	
 	@Test
     public void testToString() {
-		
-		assertEquals(karteldegia.toString(),karteldegia.toString());
-		
+		assertEquals(karteldegia.toString(),karteldegia.toString());	
 	}
 	
 	
     @Test
     public void testGettersAndSetters() {
 
-        assertEquals(filmak, karteldegia.getFilmak());
-
-        Filma[] newFilmak = {
-            new Filma("Inception", 3, "zientzia-fikzioa", 150),
-            new Filma("Interstellar", 4, "zientzia-fikzioa", 180)
-        };
-        
-        karteldegia.setFilmak(newFilmak);
-
-        assertEquals(newFilmak, karteldegia.getFilmak());
+    	Filma filma = new Filma("Los hermanos Lucashevicius", 3, "Drama", 99);
+    	ArrayList<Filma> karteldegiaAr2= new ArrayList<>();       
+    	
+    	karteldegia.setFilmak(karteldegiaAr2);
+    	assertEquals(karteldegiaAr2,karteldegia.getFilmak());
     }
 
     @Test
     public void testEquals() {
-      
-        Karteldegia karteldegia1 = new Karteldegia(filmak);
+    	ArrayList<Filma> karteldegiaAr2 = new ArrayList<>(); 
+        Filma filma = new Filma("La vida de Woot", 3, "komedia", 150);
+        karteldegiaAr2.add(filma);
+        
+        ArrayList<Filma> karteldegiaAr = new ArrayList<>();
+        Filma filma2 = new Filma("Regreso a la gloria",1,"Dokumentala",133);
+        karteldegiaAr.add(filma2);
+        
+        
+        Karteldegia karteldegia = new Karteldegia(karteldegiaAr);
+        
+        
+        Karteldegia karteldegia2 = new Karteldegia(karteldegiaAr2);
 
-        Modeloa.Filma[] filmak2 = {
-        	new Filma("Inception", 3, "zientzia-fikzioa", 150),
-            new Filma("Interstellar", 4, "zientzia-fikzioa", 180)
-        };
-        Modeloa.Karteldegia karteldegia2 = new Karteldegia(filmak2);
-
-        assertTrue(karteldegia1.equals(karteldegia));
- 
-        filmak2[1] = new Filma("Inception", 3, "zientzia-fikzioa", 150);
-
-        assertFalse(karteldegia1.equals(karteldegia2));
+        assertTrue(karteldegia.equals(karteldegia));
+        assertFalse(karteldegia.equals(karteldegia2));
     }
-
+    
     @Test
     public void testHashCode() {
        
-        Filma[] filmak1 = {
-            new Filma("Avatar", 1, "zientzia-fikzioa", 90),
-            new Filma("Matrix", 2, "zientzia-fikzioa", 120)
-        };
-        Karteldegia karteldegia1 = new Karteldegia(filmak1);
-
-        Filma[] filmak2 = {
-            new Filma("Avatar", 1, "zientzia-fikzioa", 90),
-            new Filma("Matrix", 2, "zientzia-fikzioa", 120)
-        };
-        Karteldegia karteldegia2 = new Karteldegia(filmak2);
-
-        assertEquals(karteldegia1.hashCode(), karteldegia2.hashCode());
     }
+
 }

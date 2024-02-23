@@ -74,7 +74,7 @@ import Kontroladorea.*;
 		filmaPnl.setBounds(0, 0, 434, 261);
 		getContentPane().add(filmaPnl);
 	}
-=======
+
     public class Zinema_aukeraketa extends JFrame{
     	
         private JPanel zinemaAuPan;

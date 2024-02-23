@@ -18,8 +18,7 @@ public class KarteldegiaTest {
 	
 	@Before
 	public void setUp() { 
-		 karteldegiaAr.add(new Filma("Avatar", 1, "zientzia-fikzioa", 90));
-		 karteldegiaAr.add(new Filma("Matrix", 2, "zientzia-fikzioa", 120));
+		 karteldegiaAr.add(new Filma("Handia", 1, "Drama", 116));
 		 
 		 karteldegia = new Karteldegia(karteldegiaAr);
 	}

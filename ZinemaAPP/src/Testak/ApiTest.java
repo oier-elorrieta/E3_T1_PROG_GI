@@ -20,16 +20,24 @@ public class ApiTest {
 	
     private Connection konexioa = null;
     Api api;
+    private ArrayList<Filma> karteldegiaAr= api.filmak();;
+    private Karteldegia karteldegia = new Karteldegia(karteldegiaAr);
 	
 	@Before
 	public void before() {
 		api =new Api();
+		
+		
 	}
 	
 	@Test
 	public void zinemakTest() throws SQLException{
 		api.Zinemak();
 		assertEquals(api.getRs(),api.getRs());
+		api.saioa(1);
+		assertEquals(api.getRs(),api.getRs());
+		assertEquals(karteldegiaAr,karteldegia.getFilmak());
+		
 		
 	    
 	}

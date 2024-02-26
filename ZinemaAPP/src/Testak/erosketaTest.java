@@ -28,6 +28,7 @@ public class erosketaTest {
 	ArrayList<Sarrera> sarrerak2;
 	Modeloa.Erabiltzaile erabiltzaile2;
 	
+	
 	@Before
 	public void setUp() {
 		filma = new Filma("Avatar",33,"zientzia-fikzioa",90);
@@ -36,7 +37,7 @@ public class erosketaTest {
 		
 		saioa = new Saioa(1,aretoa,LocalDate.of(2022, 2, 6),LocalTime.of(14, 30),13.42,filma);
 		
-		sarrera = new Sarrera(2029,LocalDateTime.of(2022, 2, 6, 15, 0),saioa,"Zubiarte");
+		sarrera = new Sarrera(saioa,"MiniBoo",3);
 		
 		sarrerak = new ArrayList<>(); 
 		sarrerak.add(sarrera);
@@ -52,7 +53,7 @@ public class erosketaTest {
 		
 		saioa = new Saioa(1,aretoa,LocalDate.of(2022, 2, 6),LocalTime.of(14, 30),13.42,filma);
 		
-		sarrera2 = new Sarrera(2029,LocalDateTime.of(2022, 2, 6, 15, 0),saioa,"Reset");
+		sarrera2 = new Sarrera(saioa,"Reset",2);
 			
 		sarrerak2 = new ArrayList<>(); 
 		sarrerak2.add(sarrera);

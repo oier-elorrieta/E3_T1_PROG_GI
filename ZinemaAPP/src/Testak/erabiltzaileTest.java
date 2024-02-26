@@ -29,27 +29,46 @@ public class erabiltzaileTest {
     
 
     @Test
-    public void testGettersAndSetters() {
+    public void testGettersAndSettersErabiltzaile() {
     	erabiltzaile.setErabiltzaile("patxifrankotiradorea");
     	assertEquals("patxifrankotiradorea",erabiltzaile.getErabiltzaile());
+    }
+    @Test
+    public void testGettersAndSettersIzena() {
     	erabiltzaile.setIzena("Arya");
         assertEquals("Arya", erabiltzaile.getIzena());
+    }
+    @Test
+    public void testGettersAndSettersPasahitza() {
         erabiltzaile.setPasahitza("v@larm0rgul1s");
         assertEquals("v@larm0rgul1s", erabiltzaile.getPasahitza());
+    }
+    @Test
+    public void testGettersAndSettersAbizena() {
         erabiltzaile.setAbizena("Stark");
         assertEquals("Stark", erabiltzaile.getAbizena());
+    }
+    @Test
+    public void testGettersAndSettersData() {
         erabiltzaile.setJaiotzedata(LocalDate.of(1998, 4, 25));
         assertEquals(LocalDate.of(1998, 4, 25), erabiltzaile.getJaiotzedata());
+    }  
+    @Test
+    public void testGettersAndSettersNan() {
         erabiltzaile.setNan("87654321B");
         assertEquals("87654321B", erabiltzaile.getNan());
+    }
+    @Test
+    public void testGettersAndSettersGeneroa() {
         erabiltzaile.setgeneroa("Female");
         assertEquals("Female",erabiltzaile.getgeneroa());
+    }
+    @Test
+    public void testGettersAndSettersId() {
         erabiltzaile.setId(2);
         assertEquals(2, erabiltzaile.getId());
     }
-
-
-
+	
     @Test
     public void testEquals() {
     	Modeloa.Erabiltzaile sameErabiltzaile = erabiltzaile;

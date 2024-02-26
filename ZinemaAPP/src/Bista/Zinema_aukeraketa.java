@@ -34,12 +34,14 @@ import Kontroladorea.*;
 
     public class Zinema_aukeraketa extends JFrame{
     	
+    	//Panelak
         private JPanel zinemaAuPan;
         private JPanel filmaAuPan;
         private JPanel dataAuPan;
         private JPanel saioaAuPan;
+       
+        //lbl-ak eta botoiak
         private final JLabel lblZinemaAu = new JLabel("Aukeratu Zinema:");
-        private final JComboBox<Zinema> cboZinemaAu = new JComboBox();
         private final JButton  btnFilmaData = new JButton("Atzera");
         private final JButton btnZineData = new JButton("Jarraitu");
         private final JButton btnFilmaSaioa = new JButton("Hurrengoa");
@@ -47,46 +49,52 @@ import Kontroladorea.*;
         private final JButton  btnDataFilma = new JButton("Jarraitu");
         private final JButton  btnSaioaErosketa = new JButton("Jarraitu");
         private final JButton  btnSaioaFilma = new JButton("Atzera");
+        private final JButton  btnErosketara = new JButton("Bukatu Erosketa");
         
-        
-        Zinema aukeratutakoZinema = (Zinema)cboZinemaAu.getSelectedItem();
-       
-        Date selectedDate;
-        Date currentDate =new Date();
-        LocalDate  currentLocalDate = currentDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        UtilDateModel model;
+        //cbobox-ak
+        private final JComboBox<Zinema> cboZinemaAu = new JComboBox();
         private final JComboBox<String> cboFilmaAu = new JComboBox();
-        ArrayList<String> errepikatuGabekoPel;
         private final JComboBox<Saioa> cboSaioaAu = new JComboBox();
-        String aukeratutakoPelia;
+        SpinnerModel spinnerModel = new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1);
+        private JSpinner kantAu = new JSpinner(spinnerModel);
+       
+        //Aukeratutako datuak
+        private Zinema aukeratutakoZinema = (Zinema)cboZinemaAu.getSelectedItem();
+        private String aukeratutakoPelia;
+        private Date aukeratutakoData;
+        private Saioa aukeratutakoSaioa;
+        private Erabiltzaile logeatutakoErabiltzailea;
+        private ArrayList<Sarrera> sarrerak = new ArrayList();
         
+        //beste batzuk
+        private Date gaurkoData =new Date();
+        private LocalDate  currentLocalDate = gaurkoData.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        private UtilDateModel model;
+        private ArrayList<String> errepikatuGabekoPel;
+        
+
+        
+   
+   
         
         
         /**
-         * Create the frame.
+         * 
+         * @param api
          */
-        
-        
-        
-        public void filmakBete() {
-        	
-        	
-        	
-        }
-        
-        
-        
         public Zinema_aukeraketa(Api api) {
         	
-        
+        	logeatutakoErabiltzailea = api.getOkLogeatutakoErabiltzile();
+        	
+        	
         	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(100, 100, 450, 300);
             getContentPane().setLayout(new BorderLayout(0, 0));
 
            
             
-            zinemaAuPan = hasieratuPanel1(api);
-            dataAuPan = hasieratuPanel3();
+            zinemaAuPan = hasieratuPanel1_zinemaAu(api);
+            dataAuPan = hasieratuPanel3_dataAu();
             
 
           
@@ -97,7 +105,10 @@ import Kontroladorea.*;
             zinemaAuPan.setVisible(true);
             dataAuPan.setVisible(false);
 
-            // btn asfasdfasdfasdfdsfasasdfasdasafsasfasdfasdasfasdfasdfasdfasdfasdfasdfasdfasdfasdf
+          
+            //Botoien listenerrak
+            
+            
             btnZineData.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     zinemaAuPan.setVisible(false);
@@ -112,19 +123,15 @@ import Kontroladorea.*;
             btnDataFilma.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                    
-                	
-                	
-                	
-                	//dataAuPan.setVisible(false);
               
-                	selectedDate = model.getValue();
+                	aukeratutakoData = model.getValue();
                 	boolean aurrera = false;
             		for(Saioa i:aukeratutakoZinema.getSaioak()) {
             			
-            			if(i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
+            			if(i.getData().equals(aukeratutakoData.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
             				
             				dataAuPan.setVisible(false);
-                			filmaAuPan = hasieratuPanel2();
+                			filmaAuPan = hasieratuPanel2_filmaAu();
                         	getContentPane().add(filmaAuPan);
                         	filmaAuPan.setVisible(true);
                         	aurrera = true;
@@ -160,7 +167,7 @@ import Kontroladorea.*;
                 public void actionPerformed(ActionEvent e) {
                 	aukeratutakoPelia = (String)cboFilmaAu.getSelectedItem();
                 	filmaAuPan.setVisible(false);
-                	saioaAuPan = hasieratuPanel4();
+                	saioaAuPan = hasieratuPanel4_saioAu();
                 	getContentPane().add(saioaAuPan);
                 	saioaAuPan.setVisible(true);
                 	
@@ -178,12 +185,46 @@ import Kontroladorea.*;
                 }
             });
             
+            btnSaioaErosketa.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                	
+                	aukeratutakoSaioa = (Saioa) cboSaioaAu.getSelectedItem();
+                	sarrerak.add(new Sarrera(aukeratutakoSaioa,aukeratutakoZinema.getIzena(),(int) kantAu.getValue()));
+                	saioaAuPan.setVisible(false);
+                	zinemaAuPan.setVisible(true);
+                	cboSaioaAu.removeAllItems();
+                	cboFilmaAu.removeAllItems();
+                	
+                   
+                    
+                }
+            });
+            
+            
+            btnErosketara.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                	aukeratutakoSaioa = (Saioa) cboSaioaAu.getSelectedItem();
+                	sarrerak.add(new Sarrera(aukeratutakoSaioa,aukeratutakoZinema.getIzena(),(int) kantAu.getValue()));
+                	ErosketaBista erosketaBista = new ErosketaBista(sarrerak,logeatutakoErabiltzailea);
+                	erosketaBista.setVisible(true);
+                	
+                	
+                   
+                    
+                }
+            });
+            
+            
 
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////
         
-        public JPanel hasieratuPanel1(Api api) {
+        /**
+         * 
+         * @param api
+         * @return
+         */
+        public JPanel hasieratuPanel1_zinemaAu(Api api) {
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
             panel.setLayout(new BorderLayout(0, 0));
@@ -201,9 +242,12 @@ import Kontroladorea.*;
             return panel;
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////
         
-        public JPanel hasieratuPanel2() {
+        /**
+         * 
+         * @return
+         */
+        public JPanel hasieratuPanel2_filmaAu() {
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
             panel.setLayout(new BorderLayout(0, 0));
@@ -228,7 +272,7 @@ import Kontroladorea.*;
     		
     		for(Saioa i:aukeratutakoZinema.getSaioak()) {
     			
-    			if(!errepikatuGabekoPel.contains(i.getFilma().getIzena()) && i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
+    			if(!errepikatuGabekoPel.contains(i.getFilma().getIzena()) && i.getData().equals(aukeratutakoData.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate())) {
     			
     				cboFilmaAu.addItem(i.getFilma().getIzena());
     				errepikatuGabekoPel.add(i.getFilma().getIzena());
@@ -245,9 +289,11 @@ import Kontroladorea.*;
         
         
         
-        ////////////////////////////////////////////////////////////////////////////////////
-        
-        public JPanel hasieratuPanel3() {            
+      
+        /*
+         * 
+         */
+        public JPanel hasieratuPanel3_dataAu() {            
             JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
             panel.setLayout(new BorderLayout(0, 0));
@@ -270,7 +316,7 @@ import Kontroladorea.*;
 
             properties.put("text.year", "Año");
 
-            // Configurar el modelo para no permitir fechas pasadas
+            // Data predeterminatua jartzen
 
             int year = currentLocalDate.getYear();
             int month = currentLocalDate.getMonthValue();
@@ -281,19 +327,15 @@ import Kontroladorea.*;
 
            System.out.println(currentLocalDate);
             
-            // Crear el panel de fecha
+            // Sortu dataren panela
 
             JDatePanelImpl datePanel = new JDatePanelImpl(model, properties);
 
-            // Crear el picker de fecha con DateComponentFormatter
-
             JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateComponentFormatter());
-
-            // Configurar el picker de fecha
 
             datePicker.getJFormattedTextField().setEditable(true);
 
-            // Añadir un PropertyChangeListener al modelo para validar las fechas
+            // DatePickerraren listenerra sortzen eta datak balidatzen
 
             model.addPropertyChangeListener(new PropertyChangeListener() {
 
@@ -301,7 +343,7 @@ import Kontroladorea.*;
 
                 public void propertyChange(PropertyChangeEvent evt) {
                 	
-                	selectedDate = model.getValue();
+                	aukeratutakoData = model.getValue();
                 	SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
                 	Date maximoa;
 					try {
@@ -313,7 +355,7 @@ import Kontroladorea.*;
                     int month = currentLocalDate.getMonthValue();
                     int day = currentLocalDate.getDayOfMonth();
 
-                    if (selectedDate != null && selectedDate.before(currentDate) || selectedDate.after(maximoa)) {
+                    if (aukeratutakoData != null && aukeratutakoData.before(gaurkoData) || aukeratutakoData.after(maximoa)) {
                     	
                         model.setDate(year,month,day);
                         model.setSelected(true);
@@ -337,10 +379,13 @@ import Kontroladorea.*;
         }
         
         
-        ////////////////////////////////////////////////////////////////////////////////////////////////
         
         
-        public JPanel hasieratuPanel4() {
+        /**
+         * 
+         * @return
+         */
+        public JPanel hasieratuPanel4_saioAu() {
             
         	JPanel panel = new JPanel();
             panel.setBounds(0, 0, 434, 261);
@@ -362,10 +407,14 @@ import Kontroladorea.*;
             
     		splitPane.setLeftComponent(btnSaioaFilma);
     		splitPane.setRightComponent(btnSaioaErosketa);
-            
+    		
+    		panel.add(btnErosketara,BorderLayout.EAST);
+            panel.add(kantAu,BorderLayout.WEST);
+    		
+    		
             for(Saioa i: aukeratutakoZinema.getSaioak()) {
             	
-            	if(i.getFilma().getIzena().equals(aukeratutakoPelia) && i.getData().equals(selectedDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate()))
+            	if(i.getFilma().getIzena().equals(aukeratutakoPelia) && i.getData().equals(aukeratutakoData.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate()))
             	cboSaioaAu.addItem(i);
             	
             }
@@ -375,6 +424,10 @@ import Kontroladorea.*;
         }
 
         
+ 
+           
+            
+      
         
         
 

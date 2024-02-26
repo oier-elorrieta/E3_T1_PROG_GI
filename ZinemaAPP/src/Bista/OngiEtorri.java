@@ -40,12 +40,14 @@ import java.awt.event.ActionEvent;
 		lblNewLabel.setBounds(106, 67, 212, 43);
 		contentPane.add(lblNewLabel);
 		
+		
+		
 		JButton OngiEtorriBtn = new JButton("Aurrera Egin");
 		OngiEtorriBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				Zinema_aukeraketa zinemaBista = new Zinema_aukeraketa(api);
-				zinemaBista.setVisible(true);
+				Logina loginBista = new Logina(api);
+				loginBista.setVisible(true);
 				dispose(); 
 				
 

@@ -1,0 +1,83 @@
+package Modeloa;
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+public class Sarrera {
+	
+	
+	private Saioa saioa;
+	private String zinema;
+	
+
+	
+	
+	public Sarrera(Saioa saioa, String zinema) {
+		
+		
+		
+		this.saioa = saioa;
+		this.zinema = zinema;
+		
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Sarrera [saioa=" + saioa + ", zinema=" + zinema + "]";
+	}
+
+
+
+
+	public Saioa getSaioa() {
+		return saioa;
+	}
+
+
+
+
+	public void setSaioa(Saioa saioa) {
+		this.saioa = saioa;
+	}
+
+
+
+
+	public String getZinema() {
+		return zinema;
+	}
+
+
+
+
+	public void setZinema(String zinema) {
+		this.zinema = zinema;
+	}
+
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(saioa, zinema);
+	}
+
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Sarrera other = (Sarrera) obj;
+		return Objects.equals(saioa, other.saioa) && Objects.equals(zinema, other.zinema);
+	}
+
+	
+}

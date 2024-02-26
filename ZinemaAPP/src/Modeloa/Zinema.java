@@ -5,21 +5,15 @@ import java.util.Objects;
 
 public class Zinema {
 	
-	private	String ordutegia;
+
 	private ArrayList<Saioa> saioak;
 	private ArrayList<Aretoa> aretoak;
 	private String izena; 
 	private int id;
-	private String kokapena;
-	
-
 	
 	public Zinema(String ordutegia, String izena, int id, String kokapena) {
-		this.ordutegia = ordutegia;
 		this.izena = izena;
-		this.id = id;
-		this.kokapena = kokapena;
-		
+		this.id = id;	
 	}
 	
 	public Zinema(){
@@ -29,12 +23,12 @@ public class Zinema {
 	public Zinema(String ordutegia, ArrayList<Saioa> saioak, ArrayList<Aretoa> aretoak, String izena, int id,
 			String kokapena) {
 		super();
-		this.ordutegia = ordutegia;
+		
 		this.saioak = saioak;
 		this.aretoak = aretoak;
 		this.izena = izena;
 		this.id = id;
-		this.kokapena = kokapena;
+		
 	}
 
 	@Override
@@ -42,13 +36,7 @@ public class Zinema {
 		return izena;
 	}
 
-	public String getOrdutegia() {
-		return ordutegia;
-	}
-
-	public void setOrdutegia(String ordutegia) {
-		this.ordutegia = ordutegia;
-	}
+	
 
 	public ArrayList<Saioa> getSaioak() {
 		return saioak;
@@ -82,17 +70,11 @@ public class Zinema {
 		this.id = id;
 	}
 
-	public String getKokapena() {
-		return kokapena;
-	}
-
-	public void setKokapena(String kokapena) {
-		this.kokapena = kokapena;
-	}
+	
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(aretoak, id, izena, kokapena, ordutegia, saioak);
+		return Objects.hash(aretoak, id, izena,saioak);
 	}
 
 	@Override
@@ -105,7 +87,6 @@ public class Zinema {
 			return false;
 		Zinema other = (Zinema) obj;
 		return Objects.equals(aretoak, other.aretoak) && id == other.id && Objects.equals(izena, other.izena)
-				&& Objects.equals(kokapena, other.kokapena) && Objects.equals(ordutegia, other.ordutegia)
 				&& Objects.equals(saioak, other.saioak);
 	}
 	

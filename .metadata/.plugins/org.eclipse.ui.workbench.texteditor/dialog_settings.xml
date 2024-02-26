@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=" void "/>
+		<item key="selection" value="filmak"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="filmak"/>
+			<item value="aretoArray"/>
+			<item value="currentDate"/>
+			<item value="selectedDate"/>
+			<item value="hasieratuPanel1(Api api)"/>
+			<item value="hasieratuPanel2()"/>
+			<item value="hasieratuPanel4_SaioAu()"/>
+			<item value="hasieratuPanel3_DataAu()"/>
+			<item value="hasieratuPanel3()"/>
+			<item value="hasieratuPanel4_SaioAu"/>
+			<item value="hasieratuPanel4()"/>
 			<item value=" void "/>
 			<item value="//"/>
 			<item value="zinemaBete"/>
 			<item value="aretoak"/>
-			<item value="loginOk"/>
-			<item value="konexioa"/>
-			<item value="LoginForm"/>
 		</list>
 		<list key="replacehistory">
+			<item value="filmakBete"/>
+			<item value="aretoakBete"/>
+			<item value="gaurkoData"/>
+			<item value="aukeratutakoData"/>
+			<item value="hasieratuPanel1_zinemaAu(Api api)"/>
+			<item value="hasieratuPanel2_filmaAu()"/>
+			<item value="hasieratuPanel4_saioAu()"/>
+			<item value="hasieratuPanel3_dataAu()"/>
+			<item value="hasieratuPanel3_DataAu()"/>
+			<item value="hasieratuPanel4_SaioAu()"/>
+			<item value="hasieratuPanel4_SaioAu"/>
+			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

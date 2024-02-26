@@ -31,11 +31,8 @@ public class ZinemaTest {
       aretoAr.add(aretoa);
       zinema = new Zinema("10:30/24:00", saioaAr, aretoAr, "Rocky-Zinemak", 33, "La Peña");
       
-      /*----HIRU KONSTRUKTORE DAUZKAGU ZINEMA OBJEKTUARAKO BERAZ BI ZINEMA SORTUKO DITUT BI KONSTRUKTOREAK KONPROBATZEKO----*/
-      
-      Zinema zinema2 = new Zinema("08:00:15:00","Riens Zinemak",1,"Colombia");
-      
-      Zinema zinema3 = new Zinema();
+      /////BESTE KONSTRUKTOREAK PROBATU///////
+      Zinema zinemaUtzik = new Zinema();
   }
    
    
@@ -49,8 +46,7 @@ public class ZinemaTest {
   @Test
   public void testSettersAndGetters() {
     
-      zinema.setOrdutegia("10:30/02:00");
-      assertEquals("10:30/02:00", zinema.getOrdutegia());
+      
       ArrayList<Modeloa.Saioa> saioaAr2= new ArrayList<>();;
       Saioa newSaioa = new Saioa(2, aretoa, LocalDate.now(), LocalTime.of(15, 30), 15.0, filma);
       saioaAr2.add(newSaioa);
@@ -60,8 +56,6 @@ public class ZinemaTest {
       assertEquals("Zinema2", zinema.getIzena());
       zinema.setId(69);
       assertEquals(69, zinema.getId());
-      zinema.setKokapena("Orozko");
-      assertEquals("Orozko", zinema.getKokapena());
       ArrayList<Modeloa.Aretoa> aretoAr2= new ArrayList<>();;
       Aretoa newAretoa = new Aretoa("Mini Boo",3); 
       aretoAr2.add(newAretoa);

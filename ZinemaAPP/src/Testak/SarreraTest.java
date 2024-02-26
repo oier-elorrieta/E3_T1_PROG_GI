@@ -27,46 +27,53 @@ public class SarreraTest {
 	aretoa = new Aretoa("aretoa1", 1);
 	filma  = new Filma("Avatar", 1, "zientzia-fikzioa", 90);
 	saioa = new Saioa(1, aretoa, LocalDate.now(), LocalTime.of(10, 30),13.5,filma);
-	sarrera = new Sarrera(1, LocalDateTime.of(2029, 6, 2, 15, 30), saioa, "MegaPark");
+	sarrera = new Sarrera(saioa,"OTTIS cinema",33);
 	}
 	
 	@Test
     public void testToString() {
-		
+
 		assertEquals(sarrera.toString(),sarrera.toString());
 		
 	}
 	
 	@Test
-	public void testGettersAndSetters() {
+	public void testSetGetSaioa() {
 		
-		sarrera.setId(2);
-		assertEquals(2, sarrera.getId());
-		
-		sarrera.setData_ordua(LocalDateTime.of(2014,4,5,15, 5 ));
-		assertEquals(LocalDateTime.of(2014,4,5,15, 5),sarrera.getData_ordua());
-	
 		Saioa saioa2 = new Saioa(1, aretoa, LocalDate.now(), LocalTime.of(10, 30),13.5,filma); 
 		sarrera.setSaioa(saioa2);
 		assertEquals(saioa2, sarrera.getSaioa());
-		
-		sarrera.setZinema("MegaPark");
-		assertEquals("MegaPark", sarrera.getZinema());
-		
+	
+	}
+	
+	@Test
+	public void testSetGetZinema() {
+		sarrera.setZinema("Zubiarte");
+		assertEquals("Zubiarte",sarrera.getZinema());
+	}
+	@Test
+	public void testSetGetKantitatea() {
+		sarrera.setKantitatea(3);
+		assertEquals(3,sarrera.getKantitatea());
 	}
 		
 	@Test
 	public void testEquals() {
 		Modeloa.Sarrera sarrera1 = sarrera;
-		Modeloa.Sarrera sarrera2 = new Sarrera(2, LocalDateTime.of(2014,4,5,15, 5), saioa2, "MegaPark");
 	
-	assertTrue(sarrera.equals (sarrera1));
-	assertFalse(sarrera.equals(sarrera2));
+		assertTrue(sarrera.equals(sarrera1));
+	}
+	@Test
+	public void testNotEquals() {
+		Modeloa.Sarrera sarrera1 = sarrera;
+		Modeloa.Sarrera sarrera2 = new Sarrera( saioa2, "MegaPark",69);
+		
+		assertFalse(sarrera1.equals(sarrera2));
 	}
 	
 	@Test
 	public void testHashCode() {
-		Modeloa.Sarrera sarrera2 = new Sarrera(2, LocalDateTime.of(2014,4,5,15, 5), saioa2, "MegaPark");
+		Modeloa.Sarrera sarrera2 = new Sarrera( saioa2, "MegaPark",69);
 	
 		assertEquals(sarrera.hashCode(), sarrera.hashCode());
 	}

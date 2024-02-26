@@ -25,19 +25,25 @@ private Modeloa.Aretoa areto;
 	}
 	
     @Test
-    public void testGettersAndSetters() {
+    public void testGettersAndSettersIzena() {
     	areto.setIzena("AretoInfantil");
     	assertEquals("AretoInfantil",areto.getIzena());
-    	areto.setId(33);
+    }
+    @Test
+    public void testGettersAndSettersId() {
+       	areto.setId(33);
     	assertEquals(33,areto.getId());
     }
     
     @Test
     public void testEquals() {
     	Modeloa.Aretoa aretoBerdina = areto;
-    	Modeloa.Aretoa aretoDesberdina = new Aretoa("AretoFake",3);
- 
     	assertTrue(areto.equals(aretoBerdina));
+    }
+    
+    @Test
+    public void testNotEquals() {
+    	Modeloa.Aretoa aretoDesberdina = new Aretoa("AretoFake",3);
     	assertFalse(areto.equals(aretoDesberdina));
     }
 

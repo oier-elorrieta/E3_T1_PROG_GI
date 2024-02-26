@@ -31,7 +31,7 @@ public class Saioa {
 
 	@Override
 	public String toString() {
-		return "Ordua: " + h_ordua + " || " + "Aretoa: " + aretoa.getIzena();
+		return "Ordua: " + h_ordua + " || " + "Aretoa: " + aretoa.getIzena() + "||"  + filma;
 	}
 
 	public int getId() {

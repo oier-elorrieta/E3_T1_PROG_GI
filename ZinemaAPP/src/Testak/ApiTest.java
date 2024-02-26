@@ -29,16 +29,27 @@ public class ApiTest {
 	
 	@Test
 	public void zinemakTest() throws SQLException{
-		
-		ArrayList<Filma> karteldegiaAr= api.filmak();;
+		ArrayList<Filma> karteldegiaAr= api.filmak();
 	    Karteldegia karteldegia = new Karteldegia(karteldegiaAr);
 		api.Zinemak();
 		assertEquals(api.getRs(),api.getRs());
-		api.saioa(1);
-		assertEquals(api.getRs(),api.getRs());
-		assertEquals(karteldegiaAr,karteldegia.getFilmak());
 		
-		
-	    
+	}
+	
+	@Test
+	public void karteldegiaTest() throws SQLException{
+		ArrayList<Filma> karteldegiaAr= api.filmak();
+		Karteldegia karteldegia = new Karteldegia(karteldegiaAr);
+		assertEquals(karteldegiaAr,karteldegia.getFilmak());   
+	}
+	
+	@Test
+	public void isLoginOkTest() {
+		assertTrue(api.isLoginOk("Andoni", "p123"));
+	}
+	
+	@Test
+	public void isLoginNotOkTest() {
+		assertFalse(api.isLoginOk("vlderri", "elorrieta"));
 	}
 }                                                          

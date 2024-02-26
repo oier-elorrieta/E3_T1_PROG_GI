@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Api {
     
-	private String url = "jdbc:mysql://localhost:3307/db_zinema1";
+	private String url = "jdbc:mysql://localhost:3367/db_zinema1";
 	private String erabiltzailea = "root";
     private String pasahitza = "";
     private Connection konexioa = null;
@@ -16,7 +16,8 @@ public class Api {
     private String aukeratutakoZinema;
     private ArrayList<Zinema> zinemaO = zinemaBete();
     private ArrayList<Erabiltzaile> erabiltzaileAr = getErabiltzaileakBete();
-   
+    private Erabiltzaile OkLogeatutakoErabiltzile;
+    private ArrayList<Sarrera> Sarrerak;
     
     // Eraikitzailea
     public Api() {
@@ -24,9 +25,22 @@ public class Api {
     }
     
     
+    //geter eta setter-ak
+   
+    
     
 	public ArrayList<Zinema> getZinemaO() {
 		return zinemaO;
+	}
+
+
+	public ArrayList<Sarrera> getSarrerak() {
+		return Sarrerak;
+	}
+
+
+	public void setSarrerak(ArrayList<Sarrera> sarrerak) {
+		Sarrerak = sarrerak;
 	}
 
 
@@ -110,10 +124,10 @@ public class Api {
     	
     }
     
-    public ArrayList<Aretoa> aretoArray(int id) {
+    public ArrayList<Aretoa> aretoakBete(int id) {
         
     	konektatu();
-        ArrayList<Aretoa> aretoArray = new ArrayList<>();
+        ArrayList<Aretoa> aretoakBete = new ArrayList<>();
        
         
         /*KONTSULTA HONEKIN ARETO OBJEKTUEI BALIOA EMANGO DIEGU*/
@@ -125,15 +139,16 @@ public class Api {
         	  
             while (rs.next()) {
                 
-                aretoArray.add(new Aretoa(rs.getString("izena"),rs.getInt("id_areto")));  
+                aretoakBete.add(new Aretoa(rs.getString("izena"),rs.getInt("id_areto")));  
                
           }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return aretoArray;
+        return aretoakBete;
     }
+    
     
     public ArrayList<Filma>  filmak() {
     	
@@ -159,7 +174,10 @@ public class Api {
     	return filmak;
     }
     
-    
+    /**
+     * 
+     * @param id_zinema
+     */
     public void saioa(int id_zinema){
     	konektatu();
     	
@@ -181,7 +199,10 @@ public class Api {
     
     
     
-    
+    /**
+     * 
+     * @return
+     */
     public ArrayList<Zinema> zinemaBete() {
     
   
@@ -204,7 +225,7 @@ public class Api {
 	
 	for(Zinema i: zinemak){
 		
-		i.setAretoak(aretoArray(i.getId()));
+		i.setAretoak(aretoakBete(i.getId()));
 		saioa(i.getId());
 		ArrayList<Saioa> saioak = new ArrayList<>();
 		try {
@@ -230,36 +251,46 @@ public class Api {
     
     
     
+    // Saio-hasiera egiaztatzeko metodoa
+    public boolean isLoginOk(String erabiltzaile, String pasahitza) {
+    	konektatu();
+        boolean loginOk = false;
+       	
+		for(int i=0;i<erabiltzaileAr.size() ;i++) {
+			
+			if(erabiltzaile.equals(erabiltzaileAr.get(i).getErabiltzaile()) && pasahitza.equals(erabiltzaileAr.get(i).getPasahitza()) ) {
+				System.out.println("Sartu gara");
+				loginOk = true;
+				OkLogeatutakoErabiltzile = erabiltzaileAr.get(i);
+	
+			}	
+		}
+		if(loginOk==false) {
+			System.out.println("Ez gara sartu");
+			}
+		
+        return loginOk;
+    }
     
     
     
+
+
+
+
+
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    // Beste metodoak...
+   
     
     // Getter & Setter
-    public String getErabiltzailea() {
-        return erabiltzailea;
-    }
-    public void setErabiltzailea(String erabiltzailea) {
-        this.erabiltzailea = erabiltzailea;
-    }
     
-    public String getPasahitza() {
-        return pasahitza;
-    }
-    public void setPasahitza(String pasahitza) {
-        this.pasahitza = pasahitza;
-    }
+ 
+    public Erabiltzaile getOkLogeatutakoErabiltzile() {
+		return OkLogeatutakoErabiltzile;
+	}
+
+	public void setOkLogeatutakoErabiltzile(Erabiltzaile okLogeatutakoErabiltzile) {
+		OkLogeatutakoErabiltzile = okLogeatutakoErabiltzile;
+	}
 }
